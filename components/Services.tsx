@@ -149,19 +149,19 @@ export default function Services() {
   const xTransform = useTransform(scrollYProgress, [0, 1], ['0%', '-92%']);
 
   return (
-    <section 
-      id="services" 
-      ref={containerRef} 
+    <section
+      id="services"
+      ref={containerRef}
       className="h-[450vh] relative bg-black text-white border-b border-white bg-chex-dark"
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden px-6 md:px-16">
-        
+
         {/* Properly Spaced Section Header */}
         <div className="max-w-4xl mb-12 space-y-4">
           <div className="text-sm tracking-widest text-white uppercase font-bold">
             02 / Services
           </div>
-          
+
           <div className="space-y-2">
             <span className="text-xs uppercase tracking-widest text-white/60 font-bold block">
               What we do
@@ -174,7 +174,7 @@ export default function Services() {
           <h3 className="text-lg md:text-xl font-semibold text-white/90 tracking-wide pt-1">
             Everything your business needs to scale from zero to market leader.
           </h3>
-          
+
           <p className="text-sm md:text-base text-white/80 font-light pt-1 max-w-3xl leading-relaxed">
             "Every service we offer is designed to connect with the next — a website that feeds your marketing, marketing that feeds your analytics."
           </p>
@@ -183,15 +183,15 @@ export default function Services() {
         {/* Horizontal Scrolling Track */}
         <motion.div style={{ x: xTransform }} className="flex gap-12">
           {services.map((service, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="w-[80vw] md:w-[35vw] h-[42vh] border-2 border-white p-8 md:p-10 flex flex-col justify-between bg-black shadow-2xl shrink-0"
             >
               <span className="text-white font-mono text-xl font-bold">{service.num}</span>
               <div>
                 <h3 className="text-2xl md:text-4xl font-bold mb-4">{service.title}</h3>
                 <p className="text-white/80 text-sm md:text-base font-light mb-6">{service.desc}</p>
-                <a href="#contact" className="text-xs uppercase tracking-widest font-bold underline hover:opacity-60">
+                <a href="/contact" className="text-xs uppercase tracking-widest font-bold underline hover:opacity-60">
                   Explore Service →
                 </a>
               </div>

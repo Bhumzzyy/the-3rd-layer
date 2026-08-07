@@ -45,8 +45,6 @@
 }*/
 
 
-
-
 @import "tailwindcss";
 
 @layer base {
@@ -54,8 +52,19 @@
     background-color: #000000;
     color: #ffffff;
     font-family: var(--font-sans), sans-serif;
-    cursor: default;
+    /* 1. Hide default cursor on the main body */
+    cursor: none;
     overflow-x: hidden;
+  }
+
+  /* 2. Force hide the system cursor on ALL clickable elements */
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: none !important;
   }
 }
 
@@ -80,6 +89,7 @@
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -98,12 +108,12 @@
 /* Pure Black & White Checkered Grids */
 .bg-chex-dark {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
 .bg-chex-light {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
 }

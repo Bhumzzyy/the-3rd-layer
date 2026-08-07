@@ -7,7 +7,7 @@
 //       <Link href="/" className="text-lg font-black tracking-tighter uppercase">
 //         3rd Layer
 //       </Link>
-      
+
 //       <nav className="hidden md:flex items-center space-x-8 text-xs uppercase tracking-widest font-semibold">
 //         <Link href="/#services" className="hover:opacity-60 transition-opacity">Services</Link>
 //         <Link href="/#industries" className="hover:opacity-60 transition-opacity">Industries</Link>
@@ -37,7 +37,6 @@ export default function Navbar() {
         THE 3RD LAYER
       </Link>
       <nav className="flex items-center space-x-8 text-xs uppercase tracking-widest font-bold">
-        <Link href="#services" className="hover:opacity-60 transition-opacity">Services</Link>
         <Link href="/work" className="hover:opacity-60 transition-opacity">Work</Link>
         <Link href="/contact" className="hover:opacity-60 transition-opacity">Contact</Link>
       </nav>
