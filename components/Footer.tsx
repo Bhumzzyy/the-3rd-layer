@@ -222,7 +222,7 @@ export default function Footer() {
           </p>
           <div className="pt-2">
             <a
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center space-x-3 bg-white text-black px-8 py-4 text-xs uppercase font-bold tracking-widest hover:bg-black hover:text-white hover:border hover:border-white transition-all duration-300 shadow-2xl group"
             >
               <span>Start a Project</span>
@@ -278,6 +278,17 @@ export default function Footer() {
             <li>
               <a href="mailto:hello@the3rdlayer.com" className="text-white/80 hover:text-white flex justify-between items-center group">
                 <span className="group-hover:translate-x-1 transition-transform">Email Us</span>
+                <span className="text-white/40 group-hover:text-white transition-colors">{"↗\uFE0E"}</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://wa.me/9313504709?text=Hello!%20I'm%20looking%20for%20IT%20solutions%20for%20my%20business%20and%20would%20love%20to%20discuss%20how%20The%203rd%20Layer%20can%20help."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/80 hover:text-white flex justify-between items-center group"
+              >
+                <span className="group-hover:translate-x-1 transition-transform">WhatsApp Us</span>
                 <span className="text-white/40 group-hover:text-white transition-colors">{"↗\uFE0E"}</span>
               </a>
             </li>
