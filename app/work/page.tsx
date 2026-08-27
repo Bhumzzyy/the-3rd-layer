@@ -494,7 +494,7 @@ const projects = [
     tech: ["Next.js", "React", "Tailwind CSS"],
     align: "self-start",
     initialX: -60,
-    link: "#",
+    link: "https://www.altiuseducation.ca/",
     image: "/images/beacon-academy.jpg"
   }
 ];
@@ -512,9 +512,9 @@ const ProjectCard = ({ work, idx }: { work: any; idx: number }) => {
   const springConfig = { stiffness: 60, damping: 15, mass: 0.5 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
-  
+
   // slightly tighter spring for the radius expansion/shrinking
-  const smoothRadius = useSpring(radius, { stiffness: 80, damping: 20 }); 
+  const smoothRadius = useSpring(radius, { stiffness: 80, damping: 20 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!cardRef.current) return;
@@ -573,7 +573,7 @@ const ProjectCard = ({ work, idx }: { work: any; idx: number }) => {
           <h3 className="text-3xl md:text-4xl font-bold mb-6 max-w-[85%]">
             {work.name}
           </h3>
-          
+
           <div className="flex flex-wrap gap-2 pt-2">
             {work.tech.map((t: string, i: number) => (
               <span key={i} className="text-[10px] uppercase tracking-widest border border-black px-2.5 py-1 bg-white">
@@ -593,27 +593,27 @@ const ProjectCard = ({ work, idx }: { work: any; idx: number }) => {
               <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" result="noise" />
               <feDisplacementMap in="SourceGraphic" in2="noise" scale="40" xChannelSelector="R" yChannelSelector="G" />
             </filter>
-            
+
             {/* The mask layer using the distorted circle */}
             <mask id={maskId}>
               <rect width="100%" height="100%" fill="black" />
-              <motion.circle 
-                cx={smoothX} 
-                cy={smoothY} 
-                r={smoothRadius} 
-                fill="white" 
-                filter={`url(#${filterId})`} 
+              <motion.circle
+                cx={smoothX}
+                cy={smoothY}
+                r={smoothRadius}
+                fill="white"
+                filter={`url(#${filterId})`}
               />
             </mask>
           </defs>
-          
+
           {/* The background image rendered through the local organic mask */}
-          <image 
-            href={work.image} 
-            width="100%" 
-            height="100%" 
-            preserveAspectRatio="xMidYMid slice" 
-            mask={`url(#${maskId})`} 
+          <image
+            href={work.image}
+            width="100%"
+            height="100%"
+            preserveAspectRatio="xMidYMid slice"
+            mask={`url(#${maskId})`}
           />
         </svg>
       </div>
@@ -622,17 +622,17 @@ const ProjectCard = ({ work, idx }: { work: any; idx: number }) => {
       <motion.div
         className="absolute top-6 right-6 md:top-8 md:right-8 z-30 w-12 h-12 bg-white border-2 border-black rounded-full flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
         variants={{
-          rest: { 
-            x: 0, 
-            y: 0, 
-            backgroundColor: "#ffffff", 
-            color: "#000000" 
+          rest: {
+            x: 0,
+            y: 0,
+            backgroundColor: "#ffffff",
+            color: "#000000"
           },
-          hover: { 
-            x: 2, 
-            y: -2, 
-            backgroundColor: "#000000", 
-            color: "#ffffff" 
+          hover: {
+            x: 2,
+            y: -2,
+            backgroundColor: "#000000",
+            color: "#ffffff"
           }
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
