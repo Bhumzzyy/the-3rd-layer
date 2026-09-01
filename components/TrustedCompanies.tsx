@@ -1,377 +1,67 @@
-// 'use client';
-
-// const companies = [
-//   "Nimbus Retail", "Coastal Health Group", "Vertex Realty", "Bloom & Co.", 
-//   "Iron Gate Manufacturing", "Sunrise Hospitality", "Northfield Education", "Pixel & Pine"
-// ];
-
-// export default function TrustedCompanies() {
-//   return (
-//     <section className="py-16 border-b border-black overflow-hidden bg-white text-black bg-chex-light">
-//       <div className="text-center text-xs uppercase tracking-widest font-bold mb-8">Trusted by businesses worldwide</div>
-//       <div className="flex overflow-hidden whitespace-nowrap select-none">
-//         <div className="animate-marquee flex space-x-16 items-center">
-//           {companies.map((company, i) => (
-//             <span key={`comp-1-${i}`} className="text-lg md:text-2xl font-black uppercase tracking-tighter">
-//               {company}
-//             </span>
-//           ))}
-//           {companies.map((company, i) => (
-//             <span key={`comp-2-${i}`} className="text-lg md:text-2xl font-black uppercase tracking-tighter">
-//               {company}
-//             </span>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// 'use client';
-// import { useState } from 'react';
-// import Image from 'next/image';
-
-// const grayImages = [
-//   "/image/company1.png",
-//   "/image/company2.png",
-//   "/image/company3.png",
-//   "/image/company5.png",
-//   "/image/company6.png",
-//   "/image/company7.png",
-//     "/image/company8.png",
-// ];
-
-// // Assuming your color versions are in the same folder with '-color' or separate filenames, 
-// // adjust paths here if your file names differ (e.g., "/image/company1-color.png")
-// const colorImages = [
-//   "/image/company1-color.png",
-//   "/image/company2-color.png",
-//   "/image/company3-color.png",
-//   "/image/company5-color.png",
-//   "/image/company6-color.png",
-//   "/image/company7-color.png",
-//   "/image/company8-color.png",
-// ];
-
-// export default function TrustedCompanies() {
-//   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-//   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-
-//   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
-//     const rect = e.currentTarget.getBoundingClientRect();
-//     setCursorPos({
-//       x: e.clientX - rect.left,
-//       y: e.clientY - rect.top,
-//     });
-//     setHoveredIndex(index);
-//   };
-
-//   return (
-//     <section className="py-20 border-b border-black overflow-hidden bg-white text-black bg-chex-light">
-//       <div className="text-center text-xs uppercase tracking-widest font-bold mb-12">Trusted by businesses worldwide</div>
-//       <div className="flex overflow-hidden whitespace-nowrap select-none">
-//         <div className="animate-marquee flex space-x-20 items-center">
-//           {grayImages.map((src, i) => (
-//             <div 
-//               key={`comp-1-${i}`} 
-//               onMouseMove={(e) => handleMouseMove(e, i)}
-//               onMouseLeave={() => setHoveredIndex(null)}
-//               className="relative w-44 h-20 flex items-center justify-center cursor-pointer overflow-hidden"
-//             >
-//               {/* Default Grayscale Image */}
-//               <Image 
-//                 src={src} 
-//                 alt={`Trusted Company ${i + 1}`} 
-//                 fill 
-//                 className="object-contain filter grayscale"
-//               />
-
-//               {/* Color Lens Reveal on Hover */}
-//               {hoveredIndex === i && (
-//                 <div 
-//                   className="absolute inset-0 pointer-events-none"
-//                   style={{
-//                     clipPath: `circle(50px at ${cursorPos.x}px ${cursorPos.y}px)`,
-//                   }}
-//                 >
-//                   <Image 
-//                     src={colorImages[i]} 
-//                     alt={`Trusted Company Color ${i + 1}`} 
-//                     fill 
-//                     className="object-contain"
-//                   />
-//                 </div>
-//               )}
-//             </div>
-//           ))}
-
-//           {/* Duplicate loop for seamless marquee continuity */}
-//           {grayImages.map((src, i) => (
-//             <div 
-//               key={`comp-2-${i}`} 
-//               onMouseMove={(e) => handleMouseMove(e, i + grayImages.length)}
-//               onMouseLeave={() => setHoveredIndex(null)}
-//               className="relative w-44 h-20 flex items-center justify-center cursor-pointer overflow-hidden"
-//             >
-//               <Image 
-//                 src={src} 
-//                 alt={`Trusted Company Duplicate ${i + 1}`} 
-//                 fill 
-//                 className="object-contain filter grayscale"
-//               />
-
-//               {hoveredIndex === i + grayImages.length && (
-//                 <div 
-//                   className="absolute inset-0 pointer-events-none"
-//                   style={{
-//                     clipPath: `circle(50px at ${cursorPos.x}px ${cursorPos.y}px)`,
-//                   }}
-//                 >
-//                   <Image 
-//                     src={colorImages[i]} 
-//                     alt={`Trusted Company Color Duplicate ${i + 1}`} 
-//                     fill 
-//                     className="object-contain"
-//                   />
-//                 </div>
-//               )}
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// By parth 
-
-
-
-
-// 'use client';
-// import { useState } from 'react';
-// import Image from 'next/image';
-
-// // We continue using only the color images to ensure perfect alignment via CSS filters
-// const colorImages = [
-//   "/image/company1-color.png",
-//   "/image/company2-color.png",
-//   "/image/company3-color.png",
-//   "/image/company5-color.png",
-//   "/image/company6-color.png",
-//   "/image/company7-color.png",
-//   "/image/company8-color.png",
-// ];
-
-// export default function TrustedCompanies() {
-//   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-//   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-
-//   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
-//     const rect = e.currentTarget.getBoundingClientRect();
-//     setCursorPos({
-//       x: e.clientX - rect.left,
-//       y: e.clientY - rect.top,
-//     });
-//     setHoveredIndex(index);
-//   };
-
-//   return (
-//     // Reverted to py-20
-//     <section className="py-20 border-b border-black overflow-hidden bg-white text-black bg-chex-light">
-//       {/* Reverted to text-xs and mb-12 */}
-//       <div className="text-center text-xs uppercase tracking-widest font-bold mb-12">
-//         Trusted by businesses worldwide
-//       </div>
-      
-//       <div className="flex overflow-hidden whitespace-nowrap select-none">
-//         {/* Reverted to space-x-20 */}
-//         <div className="animate-marquee flex space-x-20 items-center">
-          
-//           {colorImages.map((src, i) => (
-//             <div 
-//               key={`comp-1-${i}`} 
-//               onMouseMove={(e) => handleMouseMove(e, i)}
-//               onMouseLeave={() => setHoveredIndex(null)}
-//               // Reverted to w-44 h-20
-//               className="relative w-44 h-20 flex items-center justify-center cursor-pointer overflow-hidden"
-//             >
-//               {/* Base layer (Grayscale) */}
-//               <Image 
-//                 src={src} 
-//                 alt={`Trusted Company ${i + 1}`} 
-//                 fill 
-//                 className="object-contain filter grayscale opacity-60 transition-opacity duration-300"
-//               />
-
-//               {/* Hover layer (Color) */}
-//               {hoveredIndex === i && (
-//                 <div 
-//                   className="absolute inset-0 pointer-events-none z-10"
-//                   style={{
-//                     // Reverted to 50px circle
-//                     clipPath: `circle(50px at ${cursorPos.x}px ${cursorPos.y}px)`,
-//                   }}
-//                 >
-//                   <Image 
-//                     src={src} 
-//                     alt={`Trusted Company Color ${i + 1}`} 
-//                     fill 
-//                     className="object-contain"
-//                   />
-//                 </div>
-//               )}
-//             </div>
-//           ))}
-
-//           {/* Duplicate loop */}
-//           {colorImages.map((src, i) => (
-//             <div 
-//               key={`comp-2-${i}`} 
-//               onMouseMove={(e) => handleMouseMove(e, i + colorImages.length)}
-//               onMouseLeave={() => setHoveredIndex(null)}
-//               className="relative w-44 h-20 flex items-center justify-center cursor-pointer overflow-hidden"
-//             >
-//               <Image 
-//                 src={src} 
-//                 alt={`Trusted Company Duplicate ${i + 1}`} 
-//                 fill 
-//                 className="object-contain filter grayscale opacity-60 transition-opacity duration-300"
-//               />
-
-//               {hoveredIndex === i + colorImages.length && (
-//                 <div 
-//                   className="absolute inset-0 pointer-events-none z-10"
-//                   style={{
-//                     clipPath: `circle(50px at ${cursorPos.x}px ${cursorPos.y}px)`,
-//                   }}
-//                 >
-//                   <Image 
-//                     src={src} 
-//                     alt={`Trusted Company Color Duplicate ${i + 1}`} 
-//                     fill 
-//                     className="object-contain"
-//                   />
-//                 </div>
-//               )}
-//             </div>
-//           ))}
-
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-
 'use client';
-import { useState } from 'react';
+
 import Image from 'next/image';
 
-const colorImages = [
-  "/image/company1-color.png",
-  "/image/company2-color.png",
-  "/image/company3-color.png",
-  "/image/company5-color.png",
-  "/image/company6-color.png",
-  "/image/company7-color.png",
-  "/image/company8-color.png",
+const clientLogos = [
+  { name: 'Sabras Masala', src: '/image/company1-color.png' },
+  { name: 'Al Buraq Group', src: '/image/company2-color.png' },
+  { name: 'Gurukrupa Enterprise', src: '/image/company3-color.png' },
+  { name: 'HM Consultech', src: '/image/company5-color.png' },
+  { name: 'Universe EdTech', src: '/image/company6-color.png' },
+  { name: 'Uniserve Platform', src: '/image/company7-color.png' },
+  { name: 'Altius Group', src: '/image/company8-color.png' },
 ];
 
 export default function TrustedCompanies() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setCursorPos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-    setHoveredIndex(index);
-  };
-
   return (
-    <section className="py-20 border-b border-black overflow-hidden bg-white text-black bg-chex-light">
-      <div className="text-center text-xs uppercase tracking-widest font-bold mb-12">
-        Trusted by businesses worldwide
+    <section className="py-14 bg-[#F3F0E9] text-[#0A0A0A] border-b border-[#0A0A0A] overflow-hidden select-none">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <span className="w-2 h-2 bg-[#DE3D1C]" />
+          <span className="text-xs font-mono uppercase tracking-widest text-[#0A0A0A] font-bold">
+            TRUSTED BY INNOVATIVE BRANDS & FOUNDERS
+          </span>
+        </div>
+        <div className="text-[10px] font-mono text-[#0A0A0A]/40 uppercase tracking-widest">
+          PORTFOLIO IMPACT // 2024–2026
+        </div>
       </div>
-      
-      <div className="flex overflow-hidden whitespace-nowrap select-none">
-        {/* Slightly increased spacing between the larger logos */}
-        <div className="animate-marquee flex space-x-24 items-center">
-          
-          {colorImages.map((src, i) => (
-            <div 
-              key={`comp-1-${i}`} 
-              onMouseMove={(e) => handleMouseMove(e, i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="relative w-64 h-32 flex items-center justify-center cursor-pointer overflow-hidden"
-            >
-              <Image 
-                src={src} 
-                alt={`Trusted Company ${i + 1}`} 
-                fill 
-                sizes="256px"
-                className="object-contain filter grayscale opacity-60 transition-opacity duration-300"
-              />
 
-              {hoveredIndex === i && (
-                <div 
-                  className="absolute inset-0 pointer-events-none z-10"
-                  style={{
-                    // INCREASED HOVER CIRCLE: 80px
-                    clipPath: `circle(80px at ${cursorPos.x}px ${cursorPos.y}px)`,
-                  }}
-                >
-                  <Image 
-                    src={src} 
-                    alt={`Trusted Company Color ${i + 1}`} 
-                    fill 
-                    sizes="256px"
-                    className="object-contain"
-                  />
-                </div>
-              )}
-            </div>
-          ))}
+      {/* Clean Restrained Marquee Strip */}
+      <div className="w-full border-t border-b border-[#0A0A0A]/15 py-6 bg-white/40">
+        <div className="flex overflow-hidden whitespace-nowrap">
+          <div className="animate-marquee flex items-center space-x-16 md:space-x-24">
+            {clientLogos.map((client, i) => (
+              <div
+                key={`client-1-${i}`}
+                className="relative h-12 w-36 md:h-14 md:w-44 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+              >
+                <Image
+                  src={client.src}
+                  alt={client.name}
+                  fill
+                  sizes="176px"
+                  className="object-contain"
+                />
+              </div>
+            ))}
 
-          {/* Duplicate loop (matching sizes) */}
-          {colorImages.map((src, i) => (
-            <div 
-              key={`comp-2-${i}`} 
-              onMouseMove={(e) => handleMouseMove(e, i + colorImages.length)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="relative w-64 h-32 flex items-center justify-center cursor-pointer overflow-hidden"
-            >
-              <Image 
-                src={src} 
-                alt={`Trusted Company Duplicate ${i + 1}`} 
-                fill 
-                sizes="256px"
-                className="object-contain filter grayscale opacity-60 transition-opacity duration-300"
-              />
-
-              {hoveredIndex === i + colorImages.length && (
-                <div 
-                  className="absolute inset-0 pointer-events-none z-10"
-                  style={{
-                    // INCREASED HOVER CIRCLE: 80px
-                    clipPath: `circle(80px at ${cursorPos.x}px ${cursorPos.y}px)`,
-                  }}
-                >
-                  <Image 
-                    src={src} 
-                    alt={`Trusted Company Color Duplicate ${i + 1}`} 
-                    fill 
-                    sizes="256px"
-                    className="object-contain"
-                  />
-                </div>
-              )}
-            </div>
-          ))}
-
+            {/* Duplicate for seamless infinite marquee loop */}
+            {clientLogos.map((client, i) => (
+              <div
+                key={`client-2-${i}`}
+                className="relative h-12 w-36 md:h-14 md:w-44 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+              >
+                <Image
+                  src={client.src}
+                  alt={client.name}
+                  fill
+                  sizes="176px"
+                  className="object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
