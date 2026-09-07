@@ -28,7 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "THE 3RD LAYER — Editorial Digital Studio & Systems",
+  title: "THE THREE LAYERS — Editorial Digital Studio & Systems",
   description:
     "We design, develop and deploy high-performance digital systems, custom web architectures, and digital products that help businesses grow faster and smarter.",
   keywords: [
@@ -38,11 +38,11 @@ export const metadata: Metadata = {
     "Software Engineering",
     "Next.js",
     "Product Studio",
-    "The 3rd Layer",
+    "The Three Layers",
   ],
-  authors: [{ name: "The 3rd Layer" }],
+  authors: [{ name: "The Three Layers" }],
   openGraph: {
-    title: "THE 3RD LAYER — Editorial Digital Studio",
+    title: "THE THREE LAYERS — Editorial Digital Studio",
     description: "IDEAS. CODE. IMPACT. We engineer digital products and scalable web architectures.",
     type: "website",
     locale: "en_US",

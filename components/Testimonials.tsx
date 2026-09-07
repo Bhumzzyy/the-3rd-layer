@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 
 const quotes = [
-  { text: "3rd Layer transformed our online presence and helped us increase leads by 300%.", author: "Rahul Mehta", role: "CEO, Buildify" },
+  { text: "The Three Layers transformed our online presence and helped us increase leads by 300%.", author: "Rahul Mehta", role: "CEO, Buildify" },
   { text: "The app they built for us is fast, user friendly, and our customers love it.", author: "Priya Shah", role: "Founder, HealthPlus" },
   { text: "Professional, creative, and highly responsive team. Highly recommended.", author: "Arjun Patel", role: "Marketing Head, Shopora" }
 ];

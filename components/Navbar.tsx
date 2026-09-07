@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
@@ -27,18 +28,24 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 border-b border-[#0A0A0A]/15 bg-[#F3F0E9]/90 backdrop-blur-md ${
-          scrolled ? 'py-3' : 'py-4 md:py-5'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 border-b border-[#0A0A0A]/15 bg-[#F3F0E9]/90 backdrop-blur-md ${scrolled ? 'py-3' : 'py-4 md:py-5'
+          }`}
       >
         <div className="max-w-7xl mx-auto px-5 md:px-10 flex items-center justify-between">
-          {/* Logo / Studio Name */}
+          {/* Logo / Brand Image */}
           <Link
             href="/"
-            className="group flex items-center gap-2 text-xl md:text-2xl font-display uppercase tracking-tight text-[#0A0A0A] hover:text-[#DE3D1C] transition-colors"
+            className="group flex items-center transition-opacity hover:opacity-85"
+            aria-label="THE THREE LAYERS Home"
           >
-            <span className="inline-block w-2.5 h-2.5 bg-[#DE3D1C] group-hover:scale-125 transition-transform" />
-            <span>THE 3RD LAYER</span>
+            <Image
+              src="/image/T3L_logo_8K_transparent.png"
+              alt="THE THREE LAYERS"
+              width={220}
+              height={70}
+              priority
+              className="h-11 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -65,28 +72,25 @@ export default function Navbar() {
             {/* Menu Drawer Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`w-9 h-9 border transition-all duration-200 flex items-center justify-center relative group ${
-                mobileMenuOpen
-                  ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white'
-                  : 'border-[#0A0A0A]/30 hover:border-[#0A0A0A] bg-[#F3F0E9] hover:bg-[#0A0A0A] text-[#0A0A0A] hover:text-white'
-              }`}
+              className={`w-9 h-9 border transition-all duration-200 flex items-center justify-center relative group ${mobileMenuOpen
+                ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white'
+                : 'border-[#0A0A0A]/30 hover:border-[#0A0A0A] bg-[#F3F0E9] hover:bg-[#0A0A0A] text-[#0A0A0A] hover:text-white'
+                }`}
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Navigation Menu'}
               title={mobileMenuOpen ? 'Close' : 'Menu'}
             >
               <div className="w-4 h-4 relative flex items-center justify-center pointer-events-none">
                 <span
-                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${
-                    mobileMenuOpen
-                      ? 'rotate-45 translate-y-0'
-                      : '-translate-y-1'
-                  }`}
+                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${mobileMenuOpen
+                    ? 'rotate-45 translate-y-0'
+                    : '-translate-y-1'
+                    }`}
                 />
                 <span
-                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${
-                    mobileMenuOpen
-                      ? '-rotate-45 translate-y-0'
-                      : 'translate-y-1'
-                  }`}
+                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${mobileMenuOpen
+                    ? '-rotate-45 translate-y-0'
+                    : 'translate-y-1'
+                    }`}
                 />
               </div>
             </button>
@@ -102,27 +106,24 @@ export default function Navbar() {
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`w-9 h-9 border transition-all duration-200 flex items-center justify-center relative ${
-                mobileMenuOpen
-                  ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white'
-                  : 'border-[#0A0A0A] bg-[#0A0A0A] text-white'
-              }`}
+              className={`w-9 h-9 border transition-all duration-200 flex items-center justify-center relative ${mobileMenuOpen
+                ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white'
+                : 'border-[#0A0A0A] bg-[#0A0A0A] text-white'
+                }`}
               aria-label={mobileMenuOpen ? 'Close Mobile Menu' : 'Open Mobile Menu'}
             >
               <div className="w-4 h-4 relative flex items-center justify-center pointer-events-none">
                 <span
-                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${
-                    mobileMenuOpen
-                      ? 'rotate-45 translate-y-0'
-                      : '-translate-y-1'
-                  }`}
+                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${mobileMenuOpen
+                    ? 'rotate-45 translate-y-0'
+                    : '-translate-y-1'
+                    }`}
                 />
                 <span
-                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${
-                    mobileMenuOpen
-                      ? '-rotate-45 translate-y-0'
-                      : 'translate-y-1'
-                  }`}
+                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${mobileMenuOpen
+                    ? '-rotate-45 translate-y-0'
+                    : 'translate-y-1'
+                    }`}
                 />
               </div>
             </button>
@@ -152,7 +153,7 @@ export default function Navbar() {
                   / DIRECTORY & NAVIGATION
                 </span>
                 <p className="text-sm text-[#F3F0E9]/70 font-light leading-relaxed mb-6">
-                  THE 3RD LAYER is an independent digital studio designing and engineering high-impact web architectures, software, and brand systems.
+                  THE THREE LAYERS is an independent digital studio designing and engineering high-impact web architectures, software, and brand systems.
                 </p>
                 <div className="text-xs font-mono text-[#F3F0E9]/50 space-y-1">
                   <div>LOC: SURAT / GUJARAT / IN</div>
@@ -185,10 +186,10 @@ export default function Navbar() {
 
             {/* Drawer Footer */}
             <div className="max-w-6xl mx-auto w-full pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-[#F3F0E9]/50">
-              <div>© 2026 THE 3RD LAYER</div>
+              <div>© 2026 THE THREE LAYERS</div>
               <div className="flex gap-6 mt-4 sm:mt-0">
-                <a href="mailto:hello@the3rdlayer.com" className="hover:text-[#DE3D1C] transition-colors">
-                  HELLO@THE3RDLAYER.COM
+                <a href="mailto:hello@thethreelayers.com" className="hover:text-[#DE3D1C] transition-colors">
+                  HELLO@THETHREELAYERS.COM
                 </a>
                 <a href="https://wa.me/9313504709" target="_blank" rel="noreferrer" className="hover:text-[#DE3D1C] transition-colors">
                   WHATSAPP

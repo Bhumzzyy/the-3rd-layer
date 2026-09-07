@@ -144,25 +144,26 @@ const pillars = [
 
 export default function About() {
   return (
-    <section id="about" className="border-b border-[#0A0A0A] relative paper-grain bg-[#F3F0E9]">
-      {/* Top Paragraph Container with Orange Background */}
-      <div className="w-full bg-[#DE3D1C] text-[#0A0A0A] pt-24 pb-16 md:pt-32 md:px-12 px-6">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4 md:pt-8">
-            <div className="lg:col-span-4">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#0A0A0A] font-bold block mb-2">
-                01 / STUDIO MANIFESTO
-              </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display uppercase tracking-tight text-[#0A0A0A]">
-                THE 3RD LAYER <br />PHILOSOPHY
-              </h2>
-            </div>
+    <section id="about" className="py-24 md:py-32 px-6 md:px-12 bg-[#F3F0E9] text-[#0A0A0A] border-b border-[#0A0A0A] relative paper-grain">
+      <div className="max-w-7xl mx-auto space-y-20">
+        {/* Section Top Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-b border-[#0A0A0A]/20 pb-12">
+          <div className="lg:col-span-4">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#DE3D1C] font-bold block mb-2">
+              01 / STUDIO MANIFESTO
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display uppercase tracking-tight text-[#0A0A0A]">
+              THE THREE LAYERS <br />PHILOSOPHY
+            </h2>
+          </div>
 
-            <div className="lg:col-span-8 space-y-6">
-              <p className="text-2xl sm:text-3xl md:text-4xl font-heading tracking-tight text-[#0A0A0A] leading-snug">
-                "We don't just build websites — we become your technology partner. Every system we engineer is designed to connect to the next."
-              </p>
-            </div>
+          <div className="lg:col-span-8 space-y-6">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-heading font-medium tracking-tight text-[#0A0A0A] leading-snug">
+              "We don't just build websites — we become your technology partner. Every system we engineer is designed to connect to the next."
+            </p>
+            <p className="text-sm md:text-base text-[#0A0A0A]/70 font-normal leading-relaxed max-w-2xl">
+              In an era of generic templates and bloated SaaS interfaces, THE THREE LAYERS stands for intentional brutalism, Swiss typographic precision, and uncompromising code execution. We help ambitious founders and businesses build digital assets that stand out and convert.
+            </p>
           </div>
         </div>
       </div>

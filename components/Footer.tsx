@@ -16,7 +16,7 @@ export default function Footer() {
               className="inline-flex items-center gap-2 text-2xl md:text-3xl font-display uppercase tracking-tight text-white hover:text-[#DE3D1C] transition-colors"
             >
               <span className="w-3 h-3 bg-[#DE3D1C]" />
-              <span>THE 3RD LAYER</span>
+              <span>THE THREE LAYERS</span>
             </Link>
 
             <p className="text-sm text-[#F3F0E9]/70 font-light leading-relaxed max-w-sm">
@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:hello@the3rdlayer.com"
+                  href="mailto:hello@thethreelayers.com"
                   className="group flex justify-between items-center text-white/80 hover:text-white border-b border-white/10 pb-1.5"
                 >
                   <span className="group-hover:translate-x-1 transition-transform">EMAIL US</span>
@@ -129,7 +129,7 @@ export default function Footer() {
 
         {/* Bottom Copyright & Performance Row */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center text-[11px] font-mono text-white/50 tracking-wider">
-          <p>© 2026 THE 3RD LAYER. ALL RIGHTS RESERVED.</p>
+          <p>© 2026 THE THREE LAYERS. ALL RIGHTS RESERVED.</p>
           <p className="mt-4 sm:mt-0 text-[#DE3D1C] uppercase font-bold tracking-widest">
             ENGINEERED FOR HIGH-CONTRAST PERFORMANCE.
           </p>
@@ -139,7 +139,7 @@ export default function Footer() {
       {/* Huge Cropped Background Typography Watermark */}
       <div className="w-full flex justify-center overflow-hidden pointer-events-none select-none -mb-3 sm:-mb-6">
         <h1 className="text-[14vw] whitespace-nowrap font-display font-black tracking-tighter uppercase leading-none text-white/[0.04] translate-y-[22%] scale-x-[0.92]">
-          THE 3RD LAYER
+          THE THREE LAYERS
         </h1>
       </div>
     </footer>

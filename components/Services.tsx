@@ -112,17 +112,7 @@ export default function Services() {
                   </div>
 
                   {/* Action Column */}
-                  {/* <div className="lg:col-span-3 flex justify-end items-center">
-                    {service.num === '05' ? (
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center gap-3 text-xs font-mono font-bold tracking-widest uppercase bg-[#DE3D1C] text-white border border-[#DE3D1C] px-5 py-3 hover:bg-[#0A0A0A] hover:border-[#0A0A0A] group-hover:bg-[#DE3D1C] group-hover:text-white transition-all duration-200 shadow-md"
-                      >
-                        <span>START PROJECT</span>
-                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </Link>
-                    ) : null}
-                  </div> */}
+                  <div className="lg:col-span-3 flex justify-end items-center" />
                 </div>
               </div>
             );

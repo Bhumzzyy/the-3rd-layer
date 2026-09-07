@@ -89,7 +89,7 @@ export default function Hero() {
       {/* Top Main Grid (Asymmetric Split Layout) */}
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 min-h-[540px] lg:min-h-[600px] xl:min-h-[640px] border-b border-[#0A0A0A]">
         {/* LEFT COLUMN: Typography & Editorial Manifesto (Span 7 cols) */}
-        <div className="lg:col-span-7 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between relative border-b lg:border-b-0 lg:border-r border-[#0A0A0A] bg-[#F3F0E9] paper-grain">
+        <div className="lg:col-span-7 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between relative border-b lg:border-b-0 border-[#0A0A0A] bg-[#F3F0E9] paper-grain">
           {/* Top Metadata row */}
           <div className="flex justify-between items-start">
             <div className="text-[11px] font-mono uppercase tracking-widest text-[#0A0A0A]/70 leading-tight">
@@ -396,7 +396,7 @@ export default function Hero() {
                   className="transition-all duration-200"
                 />
 
-                {/* --- CENTRAL CORE: THE 3RD LAYER --- */}
+                {/* --- CENTRAL CORE: THE THREE LAYERS --- */}
                 {/* Outer concentric pulse ring */}
                 <circle
                   cx="270"
@@ -423,17 +423,17 @@ export default function Hero() {
                   x="270"
                   y="265"
                   textAnchor="middle"
-                  className="font-display font-black fill-white text-[19px] tracking-tight leading-none pointer-events-none select-none"
+                  className="font-display font-black fill-white text-[15px] tracking-tight leading-none pointer-events-none select-none"
                 >
-                  3RD
+                  THREE
                 </text>
                 <text
                   x="270"
-                  y="281"
+                  y="280"
                   textAnchor="middle"
-                  className="font-mono font-bold fill-white text-[8px] tracking-[0.25em] pointer-events-none select-none"
+                  className="font-mono font-bold fill-white text-[8px] tracking-[0.22em] pointer-events-none select-none"
                 >
-                  LAYER
+                  LAYERS
                 </text>
               </svg>
 

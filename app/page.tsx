@@ -8,7 +8,7 @@ import Work from '@/components/Work';
 import Industries from '@/components/Industries';
 import TechTicker from '@/components/TechTicker';
 import Process from '@/components/Process';
-import Contact from '@/components/Contact';
+import HomeCta from '@/components/HomeCta';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
       <Industries />
       <TechTicker />
       <Process />
-      <Contact />
+      <HomeCta />
       <Footer />
     </main>
   );

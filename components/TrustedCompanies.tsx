@@ -14,7 +14,7 @@ const clientLogos = [
 
 export default function TrustedCompanies() {
   return (
-    <section className="py-14 bg-[#F3F0E9] text-[#0A0A0A] border-b border-[#0A0A0A] overflow-hidden select-none">
+    <section className="pt-10 pb-3 bg-[#F3F0E9] text-[#0A0A0A] overflow-hidden select-none">
       <div className="max-w-7xl mx-auto px-6 md:px-12 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 bg-[#DE3D1C]" />

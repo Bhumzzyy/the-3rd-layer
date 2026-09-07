@@ -40,6 +40,17 @@ const projects = [
     link: 'https://gurukripaenterprise.com/',
     tags: ['Next.js 15', 'TypeScript', 'Tailwind', 'Vercel'],
   },
+  {
+    id: '04',
+    name: 'HM CONSULTECH',
+    category: 'CONSULTING PLATFORM · NEXT.JS · ARCHITECTURE',
+    desc: 'Corporate consultation platform delivering interactive service advisories, automated appointment scheduling, and streamlined client intake workflows.',
+    metric: 'TOP 3 SEARCH RANK',
+    year: '2025',
+    image: '/image/www.hmconsultech.com_.png',
+    link: 'https://www.hmconsultech.com/',
+    tags: ['Next.js', 'React', 'Framer Motion', 'SEO Ops'],
+  },
 ];
 
 export default function Work() {
@@ -47,7 +58,7 @@ export default function Work() {
   const active = projects[activeProjectIdx];
 
   return (
-    <section id="work" className="py-16 md:py-24 px-6 md:px-12 bg-[#F3F0E9] text-[#0A0A0A] border-b border-[#0A0A0A] relative paper-grain">
+    <section id="work" className="pt-6 md:pt-8 pb-16 md:pb-24 px-6 md:px-12 bg-[#F3F0E9] text-[#0A0A0A] border-b border-[#0A0A0A] relative paper-grain">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between md:items-end border-b border-[#0A0A0A] pb-8">
@@ -87,7 +98,7 @@ export default function Work() {
               <span className="text-white/60 text-[10px]">HOVER / CLICK TO PREVIEW</span>
             </div>
 
-            {/* Top 3 Companies List */}
+            {/* Top 4 Companies List */}
             <div className="divide-y divide-[#0A0A0A]/15 flex-1">
               {projects.map((proj, idx) => {
                 const isSelected = activeProjectIdx === idx;
@@ -97,7 +108,7 @@ export default function Work() {
                     key={proj.id}
                     onClick={() => setActiveProjectIdx(idx)}
                     onMouseEnter={() => setActiveProjectIdx(idx)}
-                    className={`w-full text-left p-5 sm:p-6 transition-all duration-200 flex flex-col justify-between relative group cursor-pointer ${
+                    className={`w-full text-left p-4 sm:p-4.5 transition-all duration-200 flex flex-col justify-between relative group cursor-pointer ${
                       isSelected
                         ? 'bg-[#0A0A0A] text-[#F3F0E9]'
                         : 'hover:bg-white/70 text-[#0A0A0A]'

@@ -110,7 +110,7 @@ export default function WorkPage() {
                 SELECTED WORKS
               </h1>
               <p className="text-sm md:text-base text-[#0A0A0A]/70 font-normal max-w-xl mt-4">
-                A curated index of production digital systems, custom e-commerce engines, and high-performance applications deployed by THE 3RD LAYER.
+                A curated index of production digital systems, custom e-commerce engines, and high-performance applications deployed by THE THREE LAYERS.
               </p>
             </div>
 
