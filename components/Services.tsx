@@ -54,9 +54,9 @@ export default function Services() {
               WHAT WE BUILD
             </h2>
           </div>
-          <p className="text-sm md:text-base text-[#F3F0E9]/70 font-light max-w-md mt-4 md:mt-0 leading-relaxed">
+          {/* <p className="text-sm md:text-base text-[#F3F0E9]/70 font-light max-w-md mt-4 md:mt-0 leading-relaxed">
             Every service is engineered to connect with the next — high-converting design feeding scalable code, feeding continuous performance.
-          </p>
+          </p> */}
         </div>
 
         {/* Editorial Services List (Horizontal Rows with Thin Separators) */}
@@ -112,7 +112,7 @@ export default function Services() {
                   </div>
 
                   {/* Action Column */}
-                  <div className="lg:col-span-3 flex justify-end items-center">
+                  {/* <div className="lg:col-span-3 flex justify-end items-center">
                     {service.num === '05' ? (
                       <Link
                         href="/contact"
@@ -122,7 +122,7 @@ export default function Services() {
                         <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </Link>
                     ) : null}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             );
