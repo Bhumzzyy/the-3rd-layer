@@ -1,52 +1,66 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 
 const industries = [
   {
     code: 'IND.01',
-    name: 'REAL ESTATE & ARCHITECTURE',
-    focus: 'High-converting luxury property portals, dynamic MLS/CRM sync, virtual tour architecture, and lead capture systems.',
-    stack: ['Property Portals', 'Virtual Tours', 'CRM Sync', 'Local SEO'],
+    num: '01',
+    name: 'E-COMMERCE & RETAIL BRANDS',
+    subtitle: 'High-Converting Stores · Rapid Checkout',
+    focus: 'Fast-loading custom storefronts and Shopify architectures engineered for one primary goal: converting store visitors into repeat buyers. We eliminate cart friction, optimize checkout speed under 1 second, and automate inventory syncing so your business handles surge volume smoothly without server crashes.',
+    stack: ['Sub-1s Page Load', 'Shopify Plus / Headless', 'Cart Abandonment Recovery', 'Secure Payment Gateways'],
   },
   {
     code: 'IND.02',
-    name: 'HEALTHCARE & LIFE SCIENCES',
-    focus: 'Patient appointment scheduling engines, tele-consultation portals, HIPAA-ready security, and responsive clinical directories.',
-    stack: ['Booking Systems', 'Patient Portals', 'Data Compliance', 'Fast Load Speed'],
+    num: '02',
+    name: 'EDUCATION & EDTECH PLATFORMS',
+    subtitle: 'Streamlined Admissions · Video Streaming',
+    focus: 'Intuitive digital learning platforms and student admission portals built to simplify complex academic workflows. We deliver high-reliability video streaming, real-time student performance tracking, and automated enrollment pipelines that parents, students, and counselors can navigate effortlessly.',
+    stack: ['LMS Architecture', 'Admissions CRM Pipelines', 'Automated Assessments', 'Student Analytics Vault'],
   },
   {
     code: 'IND.03',
-    name: 'EDUCATION & EDTECH',
-    focus: 'Course management platforms, automated admissions trackers, student dashboards, and real-time learning analytics.',
-    stack: ['LMS Portals', 'Admissions CRM', 'Video Streaming', 'Student Analytics'],
+    num: '03',
+    name: 'HEALTHCARE & MEDICAL SYSTEMS',
+    subtitle: 'Patient Privacy · Instant Scheduling',
+    focus: 'Secure, patient-friendly digital portals designed for absolute privacy, trust, and instant accessibility. Features clear appointment booking calendars, automated SMS/WhatsApp reminders that cut no-shows, and resilient cloud directories that comply with strict data protection standards.',
+    stack: ['Zero-Friction Scheduling', 'Patient Intake Portals', 'Data Privacy Compliance', '99.99% Uptime SLA'],
   },
   {
     code: 'IND.04',
-    name: 'HOSPITALITY & RESTAURANT',
-    focus: 'Direct online ordering systems, interactive digital menus, multi-location discovery, and customer loyalty workflows.',
-    stack: ['Direct Ordering', 'Menu Engines', 'Google Maps SEO', 'Loyalty Integration'],
+    num: '04',
+    name: 'MANUFACTURING & INDUSTRIAL B2B',
+    subtitle: 'Global Catalogs · RFQ Lead Engines',
+    focus: 'Robust B2B digital infrastructure built for manufacturers and exporters targeting domestic and international buyers. We replace outdated PDFs with dynamic, search-indexed digital product catalogs and instant Request-For-Quote (RFQ) workflows that turn global inquiries into qualified contracts.',
+    stack: ['Dynamic Product Catalogs', 'Automated RFQ Engines', 'Distributor & Dealer Portals', 'Global SEO Localization'],
   },
   {
     code: 'IND.05',
-    name: 'E-COMMERCE & DIRECT-TO-CONSUMER',
-    focus: 'Custom Shopify Plus storefronts, headless commerce architectures, automated inventory, and high-converting checkouts.',
-    stack: ['Custom Shopify', 'Payment Gateways', 'Inventory Sync', 'Retention Funnels'],
+    num: '05',
+    name: 'HOSPITALITY & SERVICE BUSINESSES',
+    subtitle: 'Direct Bookings · Zero Commission Loss',
+    focus: 'High-converting digital guest experiences that drive direct reservations, table bookings, and food orders without paying high third-party aggregator commissions. Designed with lightning-fast mobile interfaces, Google Maps local discovery optimization, and repeat customer rewards.',
+    stack: ['Direct Booking Engines', 'Interactive Digital Menus', 'Google Business SEO', 'Customer Retention Funnels'],
   },
   {
     code: 'IND.06',
-    name: 'MANUFACTURING & INDUSTRIAL',
-    focus: 'B2B export catalogs, digital RFQ engines, dealer distribution portals, and global supply chain presentation.',
-    stack: ['B2B Catalogs', 'RFQ Systems', 'Dealer Portals', 'Multi-Language'],
+    num: '06',
+    name: 'DIGITAL MARKETING & REVENUE SYSTEMS',
+    subtitle: 'Full-Funnel CRO · Server-Side Tracking',
+    focus: 'Technical growth engineering that turns advertising spend into predictable customer revenue. We build custom high-converting landing pages, server-side tracking pipelines that bypass ad-blockers, deep analytics dashboards, and automated lead follow-up systems that maximize customer lifetime value.',
+    stack: ['Conversion Landing Pages', 'Server-Side Tracking (CAPI)', 'Lead Routing Automation', 'A/B Growth Sprints'],
   },
 ];
 
 export default function Industries() {
   return (
-    <section id="industries" className="py-24 md:py-32 px-6 md:px-12 bg-[#F3F0E9] text-[#0A0A0A] border-b border-[#0A0A0A] relative paper-grain">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section id="industries" className="py-20 md:py-28 px-6 md:px-12 bg-[#F3F0E9] text-[#0A0A0A] border-b border-[#0A0A0A] relative paper-grain">
+      <div className="max-w-7xl mx-auto space-y-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between md:items-end border-b border-[#0A0A0A]/20 pb-10">
+        <div className="flex flex-col md:flex-row justify-between md:items-end border-b border-[#0A0A0A]/20 pb-8">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-[#DE3D1C] font-bold block mb-2">
               04 / DOMAIN EXPERTISE
@@ -55,9 +69,14 @@ export default function Industries() {
               INDUSTRIES WE TRANSFORM
             </h2>
           </div>
-          <p className="text-xs sm:text-sm md:text-base text-[#0A0A0A]/70 font-light max-w-md mt-4 md:mt-0 leading-relaxed">
-            Tailored digital blueprints engineered specifically for each industry's operational model and customer acquisition funnel.
-          </p>
+          <div className="max-w-md mt-4 md:mt-0 space-y-2">
+            <p className="text-xs sm:text-sm text-[#0A0A0A]/80 font-normal leading-relaxed">
+              Every sector has unique operational bottlenecks and customer expectations. We engineer custom digital blueprints that build trust, eliminate friction, and produce measurable commercial returns.
+            </p>
+            <div className="text-[10px] font-mono text-[#0A0A0A]/50 uppercase tracking-widest">
+              DEPLOYED ACROSS 6 SPECIALIZED VERTICALS
+            </div>
+          </div>
         </div>
 
         {/* Compact Editorial 6-Grid with 1px Hairline Borders */}
@@ -65,27 +84,34 @@ export default function Industries() {
           {industries.map((ind, idx) => (
             <motion.div
               key={ind.code}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="border-r border-b border-[#0A0A0A] p-8 sm:p-10 flex flex-col justify-between bg-[#F3F0E9] hover:bg-[#0A0A0A] hover:text-white transition-all duration-300 group"
+              transition={{ duration: 0.35, delay: idx * 0.06 }}
+              className="border-r border-b border-[#0A0A0A] p-7 sm:p-8 flex flex-col justify-between bg-[#F3F0E9] hover:bg-[#0A0A0A] hover:text-white transition-all duration-300 group"
             >
               <div>
-                <div className="flex justify-between items-center mb-6">
-                  <span className="text-xs font-mono font-bold text-[#DE3D1C]">
-                    {ind.code}
-                  </span>
-                  <span className="text-[10px] font-mono text-[#0A0A0A]/40 group-hover:text-white/40 uppercase">
-                    SECTOR // 0{idx + 1}
+                <div className="flex justify-between items-center mb-5">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-[#DE3D1C]" />
+                    <span className="text-xs font-mono font-bold text-[#DE3D1C]">
+                      {ind.code}
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono text-[#0A0A0A]/40 group-hover:text-white/40 uppercase tracking-wider">
+                    SECTOR // {ind.num}
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-display uppercase tracking-tight mb-4 group-hover:text-white transition-colors">
+                <h3 className="text-xl sm:text-2xl font-display uppercase tracking-tight mb-1 group-hover:text-white transition-colors leading-snug">
                   {ind.name}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-[#0A0A0A]/75 group-hover:text-[#F3F0E9]/80 font-light leading-relaxed mb-8 transition-colors">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-[#DE3D1C] block mb-3 font-semibold">
+                  {ind.subtitle}
+                </span>
+
+                <p className="text-xs sm:text-sm text-[#0A0A0A]/80 group-hover:text-[#F3F0E9]/85 font-light leading-relaxed mb-6 transition-colors">
                   {ind.focus}
                 </p>
               </div>
@@ -104,6 +130,23 @@ export default function Industries() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Bottom Consultation Strip */}
+        <div className="border border-[#0A0A0A] p-6 bg-white/60 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono">
+          <div className="flex items-center gap-3">
+            <span className="w-2 h-2 rounded-full bg-[#DE3D1C] animate-pulse" />
+            <span className="text-[#0A0A0A] font-semibold uppercase tracking-wider">
+              OPERATING IN A SPECIALIZED OR REGULATED INDUSTRY?
+            </span>
+          </div>
+          <Link
+            href="/contact"
+            className="text-[#DE3D1C] hover:text-[#0A0A0A] font-bold uppercase tracking-widest inline-flex items-center gap-2 transition-colors"
+          >
+            <span>SCHEDULE AN ARCHITECTURE CONSULTATION</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>

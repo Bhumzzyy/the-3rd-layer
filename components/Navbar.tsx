@@ -65,12 +65,30 @@ export default function Navbar() {
             {/* Menu Drawer Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-9 h-9 border border-[#0A0A0A]/20 hover:border-[#0A0A0A] flex flex-col justify-center items-center gap-1.5 transition-colors p-2 bg-[#F3F0E9]"
-              aria-label="Toggle Menu"
+              className={`w-9 h-9 border transition-all duration-200 flex items-center justify-center relative group ${
+                mobileMenuOpen
+                  ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white'
+                  : 'border-[#0A0A0A]/30 hover:border-[#0A0A0A] bg-[#F3F0E9] hover:bg-[#0A0A0A] text-[#0A0A0A] hover:text-white'
+              }`}
+              aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Navigation Menu'}
+              title={mobileMenuOpen ? 'Close' : 'Menu'}
             >
-              <span className={`w-4 h-[1.5px] bg-[#0A0A0A] transition-transform ${mobileMenuOpen ? 'rotate-45 translate-y-[4.5px]' : ''}`} />
-              <span className={`w-4 h-[1.5px] bg-[#0A0A0A] transition-opacity ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`w-4 h-[1.5px] bg-[#0A0A0A] transition-transform ${mobileMenuOpen ? '-rotate-45 -translate-y-[4.5px]' : ''}`} />
+              <div className="w-4 h-4 relative flex items-center justify-center pointer-events-none">
+                <span
+                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${
+                    mobileMenuOpen
+                      ? 'rotate-45 translate-y-0'
+                      : '-translate-y-1'
+                  }`}
+                />
+                <span
+                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${
+                    mobileMenuOpen
+                      ? '-rotate-45 translate-y-0'
+                      : 'translate-y-1'
+                  }`}
+                />
+              </div>
             </button>
           </div>
 
@@ -78,18 +96,35 @@ export default function Navbar() {
           <div className="flex md:hidden items-center gap-3">
             <Link
               href="/contact"
-              className="bg-[#0A0A0A] text-[#F3F0E9] text-[10px] font-mono font-bold tracking-widest px-3 py-1.5 uppercase"
+              className="bg-[#0A0A0A] text-[#F3F0E9] text-[10px] font-mono font-bold tracking-widest px-3 py-1.5 uppercase hover:bg-[#DE3D1C] transition-colors"
             >
               START
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-9 h-9 border border-[#0A0A0A] flex flex-col justify-center items-center gap-1.5 p-2 bg-[#0A0A0A] text-white"
-              aria-label="Toggle Mobile Menu"
+              className={`w-9 h-9 border transition-all duration-200 flex items-center justify-center relative ${
+                mobileMenuOpen
+                  ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white'
+                  : 'border-[#0A0A0A] bg-[#0A0A0A] text-white'
+              }`}
+              aria-label={mobileMenuOpen ? 'Close Mobile Menu' : 'Open Mobile Menu'}
             >
-              <span className={`w-4 h-[1.5px] bg-[#F3F0E9] transition-transform ${mobileMenuOpen ? 'rotate-45 translate-y-[4.5px]' : ''}`} />
-              <span className={`w-4 h-[1.5px] bg-[#F3F0E9] transition-opacity ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`w-4 h-[1.5px] bg-[#F3F0E9] transition-transform ${mobileMenuOpen ? '-rotate-45 -translate-y-[4.5px]' : ''}`} />
+              <div className="w-4 h-4 relative flex items-center justify-center pointer-events-none">
+                <span
+                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${
+                    mobileMenuOpen
+                      ? 'rotate-45 translate-y-0'
+                      : '-translate-y-1'
+                  }`}
+                />
+                <span
+                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${
+                    mobileMenuOpen
+                      ? '-rotate-45 translate-y-0'
+                      : 'translate-y-1'
+                  }`}
+                />
+              </div>
             </button>
           </div>
         </div>

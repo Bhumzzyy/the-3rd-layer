@@ -45,7 +45,7 @@ export default function Services() {
     <section id="services" className="py-24 md:py-32 px-6 md:px-12 bg-[#0A0A0A] text-[#F3F0E9] border-b border-[#0A0A0A] relative dark-grain">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between md:items-end border-b border-white/20 pb-12 mb-8">
+        <div className="flex flex-col md:flex-row justify-between md:items-end pb-10 border-b border-white/15">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-[#DE3D1C] font-bold block mb-2">
               02 / CAPABILITIES & SERVICES
@@ -60,7 +60,7 @@ export default function Services() {
         </div>
 
         {/* Editorial Services List (Horizontal Rows with Thin Separators) */}
-        <div className="divide-y divide-white/15 border-t border-b border-white/15">
+        <div className="divide-y divide-white/15 border-b border-white/15">
           {serviceList.map((service, idx) => {
             const isHovered = hoveredIdx === idx;
 
@@ -111,15 +111,17 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Arrow Action */}
+                  {/* Action Column */}
                   <div className="lg:col-span-3 flex justify-end items-center">
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center gap-3 text-xs font-mono font-bold tracking-widest uppercase text-white/70 group-hover:text-[#0A0A0A] border border-white/20 group-hover:border-[#0A0A0A] px-4 py-2.5 group-hover:bg-[#DE3D1C] group-hover:text-white group-hover:border-[#DE3D1C] transition-all duration-200"
-                    >
-                      <span>START PROJECT</span>
-                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </Link>
+                    {service.num === '05' ? (
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-3 text-xs font-mono font-bold tracking-widest uppercase bg-[#DE3D1C] text-white border border-[#DE3D1C] px-5 py-3 hover:bg-[#0A0A0A] hover:border-[#0A0A0A] group-hover:bg-[#DE3D1C] group-hover:text-white transition-all duration-200 shadow-md"
+                      >
+                        <span>START PROJECT</span>
+                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </Link>
+                    ) : null}
                   </div>
                 </div>
               </div>

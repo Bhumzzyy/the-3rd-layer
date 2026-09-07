@@ -1,18 +1,97 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowDown, ArrowUpRight, MoveRight } from 'lucide-react';
 
+interface SystemModule {
+  id: string;
+  num: string;
+  name: string;
+  subStages: string[];
+  desc: string;
+  cx: number;
+  cy: number;
+  labelX: number;
+  labelY: number;
+}
+
+const modules: SystemModule[] = [
+  {
+    id: 'strategy',
+    num: '01',
+    name: 'STRATEGY',
+    subStages: ['RESEARCH', 'ANALYZE', 'PLAN', 'ARCHITECT'],
+    desc: 'System roadmapping & competitive infrastructure',
+    cx: 270,
+    cy: 88,
+    labelX: 270,
+    labelY: 54,
+  },
+  {
+    id: 'design',
+    num: '02',
+    name: 'DESIGN',
+    subStages: ['UX', 'ARCHITECTURE', 'PROTOTYPE', 'TOKENS'],
+    desc: 'Brutalist identity & conversion UX systems',
+    cx: 92,
+    cy: 270,
+    labelX: 86,
+    labelY: 270,
+  },
+  {
+    id: 'development',
+    num: '03',
+    name: 'DEVELOPMENT',
+    subStages: ['ENGINEER', 'TEST', 'INTEGRATE', 'HARDEN'],
+    desc: 'Next.js full-stack engines & cloud backends',
+    cx: 448,
+    cy: 270,
+    labelX: 454,
+    labelY: 270,
+  },
+  {
+    id: 'launch',
+    num: '04',
+    name: 'LAUNCH',
+    subStages: ['DEPLOY', 'MONITOR', 'OPTIMIZE', 'SCALE'],
+    desc: 'Automated CI/CD & continuous growth ops',
+    cx: 270,
+    cy: 452,
+    labelX: 270,
+    labelY: 486,
+  },
+];
+
 export default function Hero() {
+  const [hoveredModule, setHoveredModule] = useState<string | null>(null);
+  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const activeMod = modules.find((m) => m.id === hoveredModule);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 16; // -8px to +8px
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 16; // -8px to +8px
+    setMouseOffset({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setMouseOffset({ x: 0, y: 0 });
+    setHoveredModule(null);
+  };
+
   return (
-    <section className="relative w-full min-h-screen bg-[#F3F0E9] text-[#0A0A0A] pt-20 md:pt-24 border-b border-[#0A0A0A] overflow-hidden flex flex-col justify-between">
+    <section className="relative w-full bg-[#F3F0E9] text-[#0A0A0A] pt-16 md:pt-20 border-b border-[#0A0A0A] overflow-hidden flex flex-col justify-between">
       {/* Top Main Grid (Asymmetric Split Layout) */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 min-h-[calc(100vh-180px)] border-b border-[#0A0A0A]">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 min-h-[540px] lg:min-h-[600px] xl:min-h-[640px] border-b border-[#0A0A0A]">
         {/* LEFT COLUMN: Typography & Editorial Manifesto (Span 7 cols) */}
-        <div className="lg:col-span-7 p-6 sm:p-10 md:p-14 lg:p-16 flex flex-col justify-between relative border-b lg:border-b-0 lg:border-r border-[#0A0A0A] bg-[#F3F0E9] paper-grain">
+        <div className="lg:col-span-7 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between relative border-b lg:border-b-0 lg:border-r border-[#0A0A0A] bg-[#F3F0E9] paper-grain">
           {/* Top Metadata row */}
-          <div className="flex justify-between items-start pt-2">
+          <div className="flex justify-between items-start">
             <div className="text-[11px] font-mono uppercase tracking-widest text-[#0A0A0A]/70 leading-tight">
               <span className="block text-[#DE3D1C] font-bold">DIGITAL PARTNERS</span>
               <span className="block font-semibold">FOR GROWTH</span>
@@ -25,64 +104,64 @@ export default function Hero() {
           </div>
 
           {/* Center Giant Headline */}
-          <div className="my-8 md:my-12">
+          <div className="my-4 md:my-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-0"
             >
               <div className="flex items-start">
-                <h1 className="text-[18vw] sm:text-[14vw] lg:text-[11.5vw] font-display font-black leading-[0.82] tracking-tighter uppercase text-[#0A0A0A]">
+                <h1 className="text-[15vw] sm:text-[11vw] lg:text-[8.8vw] font-display font-black leading-[0.84] tracking-tighter uppercase text-[#0A0A0A]">
                   IDEAS
                 </h1>
                 {/* Burnt Orange Asterisk Graphic */}
-                <span className="text-[#DE3D1C] text-[8vw] sm:text-[6vw] lg:text-[4.5vw] font-sans ml-2 md:ml-4 -mt-2 animate-spin-slow inline-block select-none">
+                <span className="text-[#DE3D1C] text-[7vw] sm:text-[5vw] lg:text-[3.8vw] font-sans ml-2 md:ml-3 -mt-1 md:-mt-2 animate-spin-slow inline-block select-none">
                   ✱
                 </span>
               </div>
 
-              <h1 className="text-[18vw] sm:text-[14vw] lg:text-[11.5vw] font-display font-black leading-[0.82] tracking-tighter uppercase text-[#0A0A0A]">
+              <h1 className="text-[15vw] sm:text-[11vw] lg:text-[8.8vw] font-display font-black leading-[0.84] tracking-tighter uppercase text-[#0A0A0A]">
                 CODE
               </h1>
 
-              <h1 className="text-[18vw] sm:text-[14vw] lg:text-[11.5vw] font-display font-black leading-[0.82] tracking-tighter uppercase text-[#0A0A0A]">
+              <h1 className="text-[15vw] sm:text-[11vw] lg:text-[8.8vw] font-display font-black leading-[0.84] tracking-tighter uppercase text-[#0A0A0A]">
                 IMPACT
               </h1>
             </motion.div>
 
             {/* Editorial Paragraph with underline styling */}
-            <div className="mt-8 pt-4 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="mt-5 pt-3 flex flex-col md:flex-row md:items-end justify-between gap-5">
               <div className="relative pl-4 border-l-2 border-[#DE3D1C] max-w-md">
-                <p className="text-sm sm:text-base md:text-lg text-[#0A0A0A]/90 font-medium leading-snug">
+                <p className="text-xs sm:text-sm md:text-base text-[#0A0A0A]/90 font-medium leading-snug">
                   We design, develop and deploy digital systems that help businesses grow faster and smarter.
                 </p>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
                 <Link
                   href="/work"
-                  className="group inline-flex items-center gap-2 bg-[#0A0A0A] hover:bg-[#DE3D1C] text-[#F3F0E9] px-6 py-3.5 text-xs font-mono font-bold tracking-widest uppercase transition-all duration-200"
+                  className="group inline-flex items-center gap-2 bg-[#0A0A0A] hover:bg-[#DE3D1C] text-[#F3F0E9] px-5 py-3 text-xs font-mono font-bold tracking-widest uppercase transition-all duration-200"
                 >
                   <span>VIEW OUR WORK</span>
-                  <MoveRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <MoveRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 border border-[#0A0A0A] hover:border-[#DE3D1C] hover:text-[#DE3D1C] bg-transparent text-[#0A0A0A] px-5 py-3.5 text-xs font-mono font-bold tracking-widest uppercase transition-all duration-200"
+                  className="group inline-flex items-center gap-2 border border-[#0A0A0A] hover:border-[#DE3D1C] hover:text-[#DE3D1C] bg-transparent text-[#0A0A0A] px-4 py-3 text-xs font-mono font-bold tracking-widest uppercase transition-all duration-200"
                 >
                   <span>LET'S TALK</span>
-                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Link>
               </div>
             </div>
           </div>
 
           {/* Bottom Left Scroll Indicator & Coordinates */}
-          <div className="flex justify-between items-end pt-4 border-t border-[#0A0A0A]/10 text-[11px] font-mono text-[#0A0A0A]/60">
+          <div className="flex justify-between items-end pt-3 border-t border-[#0A0A0A]/10 text-[10px] sm:text-[11px] font-mono text-[#0A0A0A]/60">
             <div className="flex items-center gap-2 uppercase tracking-widest">
-              <ArrowDown className="w-3.5 h-3.5 animate-bounce text-[#DE3D1C]" />
+              <ArrowDown className="w-3 h-3 animate-bounce text-[#DE3D1C]" />
               <span>SCROLL TO EXPLORE</span>
             </div>
             <div className="hidden sm:block uppercase tracking-widest font-mono text-[10px]">
@@ -91,146 +170,417 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Architectural Brutalist Visual & Orange Field (Span 5 cols) */}
-        <div className="lg:col-span-5 flex flex-col bg-[#0A0A0A] relative overflow-hidden min-h-[420px] lg:min-h-full">
-          {/* Top Orange Header Banner */}
-          <div className="bg-[#DE3D1C] p-4 sm:p-6 text-white flex justify-between items-center border-b border-[#0A0A0A] relative z-10">
-            <div className="text-xs font-mono font-bold uppercase tracking-widest">
-              00 / STUDIO ARCHITECTURE
+        {/* RIGHT COLUMN: Interactive Digital-System Interface (Span 5 cols) */}
+        <div
+          ref={containerRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className="lg:col-span-5 flex flex-col justify-between bg-[#F3F0E9] relative overflow-hidden select-none p-5 sm:p-7 md:p-8"
+        >
+          {/* Subtle Technical Engineering Grid Overlay */}
+          <div className="absolute inset-0 pointer-events-none opacity-40">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="techGrid" width="36" height="36" patternUnits="userSpaceOnUse">
+                  <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#0A0A0A" strokeWidth="0.5" strokeOpacity="0.12" />
+                  <circle cx="0" cy="0" r="0.75" fill="#0A0A0A" fillOpacity="0.25" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#techGrid)" />
+            </svg>
+          </div>
+
+          {/* Top Interface Metadata Strip */}
+          <div className="relative z-10 flex justify-between items-center text-[10px] font-mono uppercase tracking-widest pb-3 border-b border-[#0A0A0A]/15 text-[#0A0A0A]/70">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#DE3D1C] animate-pulse" />
+              <span className="font-bold text-[#0A0A0A]">LIVE SYS.01 // ARCH.OS</span>
             </div>
-            <div className="text-[10px] font-mono uppercase tracking-widest bg-[#0A0A0A] text-white px-2.5 py-1">
-              EST. 2024
+            <div className="flex items-center gap-1.5 font-bold">
+              <span className="text-[#0A0A0A]/40">STATUS:</span>
+              <span className="text-[#DE3D1C]">● OPERATIONAL</span>
             </div>
           </div>
 
-          {/* Main Visual Frame with Architectural Monolith & Stamp */}
-          <div className="relative flex-1 bg-[#0A0A0A] overflow-hidden flex items-center justify-center p-6 lg:p-10">
-            {/* Background High-Contrast Architectural Composition */}
-            <div className="absolute inset-0 z-0 bg-[#0A0A0A]">
-              {/* CSS/SVG Brutalist Architectural Facade with sharp angles and perspective */}
-              <svg className="w-full h-full object-cover opacity-90" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+          {/* Center Interactive System Architecture Map */}
+          <div className="relative z-10 flex-1 flex flex-col items-center justify-center my-3 sm:my-5">
+            <div
+              className="relative w-full max-w-[460px] aspect-square flex items-center justify-center transition-transform duration-300 ease-out"
+              style={{
+                transform: `translate3d(${mouseOffset.x}px, ${mouseOffset.y}px, 0)`,
+              }}
+            >
+              {/* Primary SVG System Visualization */}
+              <svg
+                viewBox="0 0 540 540"
+                className="w-full h-full overflow-visible"
+                preserveAspectRatio="xMidYMid meet"
+              >
                 <defs>
-                  <linearGradient id="skyGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#DE3D1C" stopOpacity="0.85" />
-                    <stop offset="60%" stopColor="#1A1A1A" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#0A0A0A" stopOpacity="1" />
-                  </linearGradient>
-
-                  <linearGradient id="concreteLight" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#D8D4CC" />
-                    <stop offset="50%" stopColor="#A8A49C" />
-                    <stop offset="100%" stopColor="#6C6A64" />
-                  </linearGradient>
-
-                  <linearGradient id="concreteDark" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#3A3A3A" />
-                    <stop offset="50%" stopColor="#1E1E1E" />
-                    <stop offset="100%" stopColor="#0F0F0F" />
-                  </linearGradient>
-
-                  <pattern id="facadeGrid" width="40" height="30" patternUnits="userSpaceOnUse">
-                    <rect width="36" height="24" fill="#0A0A0A" />
-                    <rect x="2" y="2" width="32" height="20" fill="#1C1C1C" />
-                    <line x1="18" y1="2" x2="18" y2="22" stroke="#2E2E2E" strokeWidth="1" />
-                  </pattern>
+                  {/* Subtle radial glow filter for active nodes */}
+                  <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
                 </defs>
 
-                {/* Sky / Atmospheric Background */}
-                <rect width="600" height="800" fill="url(#skyGrad)" />
+                {/* --- Grid Alignment Marks & Perimeter Bounds --- */}
+                <rect
+                  x="20"
+                  y="20"
+                  width="500"
+                  height="500"
+                  fill="none"
+                  stroke="#0A0A0A"
+                  strokeWidth="0.75"
+                  strokeOpacity="0.15"
+                  strokeDasharray="4 8"
+                />
 
-                {/* Perspective Brutalist Concrete Monolith (Left Lit Facet) */}
-                <polygon points="300,120 50,800 300,800" fill="url(#concreteLight)" />
+                {/* Corner Precision Calipers */}
+                <path d="M 20 35 L 20 20 L 35 20" fill="none" stroke="#0A0A0A" strokeWidth="1.5" strokeOpacity="0.6" />
+                <path d="M 520 35 L 520 20 L 505 20" fill="none" stroke="#0A0A0A" strokeWidth="1.5" strokeOpacity="0.6" />
+                <path d="M 20 505 L 20 520 L 35 520" fill="none" stroke="#0A0A0A" strokeWidth="1.5" strokeOpacity="0.6" />
+                <path d="M 520 505 L 520 520 L 505 520" fill="none" stroke="#0A0A0A" strokeWidth="1.5" strokeOpacity="0.6" />
 
-                {/* Perspective Brutalist Concrete Monolith (Right Shadow Facet) */}
-                <polygon points="300,120 300,800 580,720" fill="url(#concreteDark)" />
+                {/* Primary Crosshairs (Axes) passing through center (270, 270) */}
+                <line x1="20" y1="270" x2="520" y2="270" stroke="#0A0A0A" strokeWidth="0.75" strokeOpacity="0.25" />
+                <line x1="270" y1="20" x2="270" y2="520" stroke="#0A0A0A" strokeWidth="0.75" strokeOpacity="0.25" />
 
-                {/* Angular Structural Fins & Grid Lines */}
-                <line x1="300" y1="120" x2="300" y2="800" stroke="#0A0A0A" strokeWidth="3" />
-                <line x1="300" y1="120" x2="50" y2="800" stroke="#FFFFFF" strokeWidth="1.5" opacity="0.6" />
-                <line x1="300" y1="120" x2="580" y2="720" stroke="#DE3D1C" strokeWidth="2" opacity="0.8" />
-
-                {/* Horizontal cantilevered slabs (Left face) */}
-                {[200, 280, 360, 440, 520, 600, 680, 760].map((y, i) => (
-                  <g key={`slab-left-${i}`}>
-                    <line
-                      x1={300 - ((y - 120) * 250) / 680}
-                      y1={y}
-                      x2="300"
-                      y2={y}
-                      stroke="#1A1A1A"
-                      strokeWidth="4"
-                    />
-                    <polygon
-                      points={`${300 - ((y - 120) * 250) / 680},${y} 300,${y} 300,${y + 15} ${300 - ((y + 15 - 120) * 250) / 680},${y + 15}`}
-                      fill="#141414"
-                      opacity="0.75"
-                    />
+                {/* Axis Coordinate Calibration Tick Marks */}
+                {[110, 150, 190, 230, 310, 350, 390, 430].map((pos) => (
+                  <g key={`tick-${pos}`}>
+                    <line x1={pos} y1="267" x2={pos} y2="273" stroke="#0A0A0A" strokeWidth="1" strokeOpacity="0.35" />
+                    <line x1="267" y1={pos} x2="273" y2={pos} stroke="#0A0A0A" strokeWidth="1" strokeOpacity="0.35" />
                   </g>
                 ))}
 
-                {/* Horizontal cantilevered slabs (Right shadow face) */}
-                {[200, 280, 360, 440, 520, 600, 680, 760].map((y, i) => (
-                  <g key={`slab-right-${i}`}>
-                    <line
-                      x1="300"
-                      y1={y}
-                      x2={300 + ((y - 120) * 280) / 680}
-                      y2={y - ((y - 120) * 80) / 680}
-                      stroke="#050505"
-                      strokeWidth="4"
-                    />
-                  </g>
-                ))}
+                {/* --- Concentric Radar & Architecture Rings --- */}
+                {/* Outermost Gauge Ring with Measurement Dots */}
+                <circle
+                  cx="270"
+                  cy="270"
+                  r="215"
+                  fill="none"
+                  stroke="#0A0A0A"
+                  strokeWidth="0.5"
+                  strokeOpacity="0.2"
+                />
 
-                {/* Stark Crosshairs and Architectural Coordinates */}
-                <line x1="40" y1="80" x2="80" y2="80" stroke="#DE3D1C" strokeWidth="1" />
-                <line x1="60" y1="60" x2="60" y2="100" stroke="#DE3D1C" strokeWidth="1" />
-                <circle cx="60" cy="80" r="12" fill="none" stroke="#DE3D1C" strokeWidth="0.75" strokeDasharray="3 3" />
+                {/* Rotating Dashed Technical Ring (Calm, 45s Cycle) */}
+                <circle
+                  cx="270"
+                  cy="270"
+                  r="170"
+                  fill="none"
+                  stroke="#0A0A0A"
+                  strokeWidth="1.2"
+                  strokeDasharray="4 6"
+                  strokeOpacity="0.45"
+                  className="origin-center animate-spin-slow"
+                />
+
+                {/* Middle Continuous Boundary Ring */}
+                <circle
+                  cx="270"
+                  cy="270"
+                  r="120"
+                  fill="none"
+                  stroke={hoveredModule ? '#DE3D1C' : '#0A0A0A'}
+                  strokeWidth={hoveredModule ? '1.5' : '1'}
+                  strokeOpacity={hoveredModule ? '0.7' : '0.3'}
+                  className="transition-colors duration-300"
+                />
+
+                {/* Inner Core Guide Ring */}
+                <circle
+                  cx="270"
+                  cy="270"
+                  r="72"
+                  fill="none"
+                  stroke="#0A0A0A"
+                  strokeWidth="0.75"
+                  strokeOpacity="0.25"
+                />
+
+                {/* Orbiting Satellite Node on middle ring */}
+                <circle
+                  cx="270"
+                  cy="150"
+                  r="3"
+                  fill="#DE3D1C"
+                  className="origin-center animate-spin-slow"
+                  style={{ animationDuration: '32s' }}
+                />
+
+                {/* Subtle Coordinate Satellite Points */}
+                <circle cx="190" cy="190" r="2" fill="#0A0A0A" fillOpacity="0.4" />
+                <circle cx="350" cy="190" r="2" fill="#0A0A0A" fillOpacity="0.4" />
+                <circle cx="190" cy="350" r="2" fill="#0A0A0A" fillOpacity="0.4" />
+                <circle cx="350" cy="350" r="2" fill="#0A0A0A" fillOpacity="0.4" />
+
+                {/* --- Connecting Traces to the 4 Modules --- */}
+                {/* 01 STRATEGY: Top Vertical Trace */}
+                <line
+                  x1="270"
+                  y1="75"
+                  x2="270"
+                  y2="225"
+                  stroke={hoveredModule === 'strategy' ? '#DE3D1C' : '#0A0A0A'}
+                  strokeWidth={hoveredModule === 'strategy' ? '2' : '1'}
+                  strokeOpacity={hoveredModule === 'strategy' ? '1' : '0.4'}
+                  className="transition-colors duration-200"
+                />
+                <circle
+                  cx="270"
+                  cy="198"
+                  r={hoveredModule === 'strategy' ? '4' : '2.5'}
+                  fill={hoveredModule === 'strategy' ? '#DE3D1C' : '#0A0A0A'}
+                  className="transition-all duration-200"
+                />
+
+                {/* 02 DESIGN: Left Horizontal Trace */}
+                <line
+                  x1="135"
+                  y1="270"
+                  x2="225"
+                  y2="270"
+                  stroke={hoveredModule === 'design' ? '#DE3D1C' : '#0A0A0A'}
+                  strokeWidth={hoveredModule === 'design' ? '2' : '1'}
+                  strokeOpacity={hoveredModule === 'design' ? '1' : '0.4'}
+                  className="transition-colors duration-200"
+                />
+                <circle
+                  cx="198"
+                  cy="270"
+                  r={hoveredModule === 'design' ? '4' : '2.5'}
+                  fill={hoveredModule === 'design' ? '#DE3D1C' : '#0A0A0A'}
+                  className="transition-all duration-200"
+                />
+
+                {/* 03 DEVELOPMENT: Right Horizontal Trace */}
+                <line
+                  x1="315"
+                  y1="270"
+                  x2="405"
+                  y2="270"
+                  stroke={hoveredModule === 'development' ? '#DE3D1C' : '#0A0A0A'}
+                  strokeWidth={hoveredModule === 'development' ? '2' : '1'}
+                  strokeOpacity={hoveredModule === 'development' ? '1' : '0.4'}
+                  className="transition-colors duration-200"
+                />
+                <circle
+                  cx="342"
+                  cy="270"
+                  r={hoveredModule === 'development' ? '4' : '2.5'}
+                  fill={hoveredModule === 'development' ? '#DE3D1C' : '#0A0A0A'}
+                  className="transition-all duration-200"
+                />
+
+                {/* 04 LAUNCH: Bottom Vertical Trace */}
+                <line
+                  x1="270"
+                  y1="315"
+                  x2="270"
+                  y2="465"
+                  stroke={hoveredModule === 'launch' ? '#DE3D1C' : '#0A0A0A'}
+                  strokeWidth={hoveredModule === 'launch' ? '2' : '1'}
+                  strokeOpacity={hoveredModule === 'launch' ? '1' : '0.4'}
+                  className="transition-colors duration-200"
+                />
+                <circle
+                  cx="270"
+                  cy="342"
+                  r={hoveredModule === 'launch' ? '4' : '2.5'}
+                  fill={hoveredModule === 'launch' ? '#DE3D1C' : '#0A0A0A'}
+                  className="transition-all duration-200"
+                />
+
+                {/* --- CENTRAL CORE: THE 3RD LAYER --- */}
+                {/* Outer concentric pulse ring */}
+                <circle
+                  cx="270"
+                  cy="270"
+                  r="52"
+                  fill="none"
+                  stroke="#DE3D1C"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.4"
+                  strokeDasharray="3 3"
+                />
+
+                {/* Solid Red Core */}
+                <circle
+                  cx="270"
+                  cy="270"
+                  r="45"
+                  fill="#DE3D1C"
+                  className="drop-shadow-md"
+                />
+
+                {/* Core White Monogram Typography */}
+                <text
+                  x="270"
+                  y="265"
+                  textAnchor="middle"
+                  className="font-display font-black fill-white text-[19px] tracking-tight leading-none pointer-events-none select-none"
+                >
+                  3RD
+                </text>
+                <text
+                  x="270"
+                  y="281"
+                  textAnchor="middle"
+                  className="font-mono font-bold fill-white text-[8px] tracking-[0.25em] pointer-events-none select-none"
+                >
+                  LAYER
+                </text>
               </svg>
 
-              {/* Film Grain & Vignette Texture Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-80" />
-            </div>
-
-            {/* Circular Studio Seal / Technical Monogram Stamp */}
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
-                {/* Outer Dashed Rotating Ring */}
-                <div className="absolute inset-0 rounded-full border border-white/30 border-dashed animate-spin-slow" />
-                <div className="absolute inset-2 rounded-full border border-[#DE3D1C]/50" />
-
-                {/* Circular Text Stamp */}
-                <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 200 200">
-                  <path
-                    id="circlePath"
-                    d="M 100, 100 m -70, 0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"
-                    fill="none"
-                  />
-                  <text className="text-[10.5px] font-mono uppercase tracking-[0.25em] fill-white/80 font-bold">
-                    <textPath href="#circlePath" startOffset="0%">
-                      • DIGITAL STUDIO • ARCHITECTURE • 3RD LAYER
-                    </textPath>
-                  </text>
-                </svg>
-
-                {/* Inner Monogram */}
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#DE3D1C] flex flex-col items-center justify-center text-white border border-white/20 shadow-2xl">
-                  <span className="text-xl sm:text-2xl font-display font-black leading-none">3RD</span>
-                  <span className="text-[8px] font-mono tracking-widest">LAYER</span>
+              {/* --- Interactive HTML Module Nodes Layer (Positioned over SVG) --- */}
+              {/* 01 STRATEGY (North) */}
+              <div
+                onMouseEnter={() => setHoveredModule('strategy')}
+                onMouseLeave={() => setHoveredModule(null)}
+                className="absolute top-2 left-1/2 -translate-x-1/2 cursor-pointer group z-20"
+              >
+                <div
+                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${
+                    hoveredModule === 'strategy'
+                      ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white scale-105'
+                      : 'border-[#0A0A0A] bg-white text-[#0A0A0A] hover:border-[#DE3D1C]'
+                  }`}
+                >
+                  <span className={`font-bold ${hoveredModule === 'strategy' ? 'text-white' : 'text-[#DE3D1C]'}`}>
+                    [01]
+                  </span>
+                  <span className="font-bold">STRATEGY</span>
                 </div>
               </div>
 
-              {/* Bottom Technical Spec Box */}
-              <div className="mt-6 bg-[#0A0A0A]/90 border border-white/20 backdrop-blur-md px-4 py-2 text-[10px] font-mono text-white/80 flex items-center gap-4">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#DE3D1C] animate-ping" />
-                <span>BUILDING SYSTEMS FOR SCALE</span>
+              {/* 02 DESIGN (West) */}
+              <div
+                onMouseEnter={() => setHoveredModule('design')}
+                onMouseLeave={() => setHoveredModule(null)}
+                className="absolute left-0 top-1/2 -translate-y-1/2 cursor-pointer group z-20"
+              >
+                <div
+                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${
+                    hoveredModule === 'design'
+                      ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white scale-105'
+                      : 'border-[#0A0A0A] bg-white text-[#0A0A0A] hover:border-[#DE3D1C]'
+                  }`}
+                >
+                  <span className={`font-bold ${hoveredModule === 'design' ? 'text-white' : 'text-[#DE3D1C]'}`}>
+                    [02]
+                  </span>
+                  <span className="font-bold">DESIGN</span>
+                </div>
+              </div>
+
+              {/* 03 DEVELOPMENT (East) */}
+              <div
+                onMouseEnter={() => setHoveredModule('development')}
+                onMouseLeave={() => setHoveredModule(null)}
+                className="absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer group z-20"
+              >
+                <div
+                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${
+                    hoveredModule === 'development'
+                      ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white scale-105'
+                      : 'border-[#0A0A0A] bg-white text-[#0A0A0A] hover:border-[#DE3D1C]'
+                  }`}
+                >
+                  <span className={`font-bold ${hoveredModule === 'development' ? 'text-white' : 'text-[#DE3D1C]'}`}>
+                    [03]
+                  </span>
+                  <span className="font-bold">DEVELOPMENT</span>
+                </div>
+              </div>
+
+              {/* 04 LAUNCH (South) */}
+              <div
+                onMouseEnter={() => setHoveredModule('launch')}
+                onMouseLeave={() => setHoveredModule(null)}
+                className="absolute bottom-2 left-1/2 -translate-x-1/2 cursor-pointer group z-20"
+              >
+                <div
+                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${
+                    hoveredModule === 'launch'
+                      ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white scale-105'
+                      : 'border-[#0A0A0A] bg-white text-[#0A0A0A] hover:border-[#DE3D1C]'
+                  }`}
+                >
+                  <span className={`font-bold ${hoveredModule === 'launch' ? 'text-white' : 'text-[#DE3D1C]'}`}>
+                    [04]
+                  </span>
+                  <span className="font-bold">LAUNCH</span>
+                </div>
               </div>
             </div>
+          </div>
+
+          {/* Bottom Active Telemetry Box (Interactive Sub-Stage Readout) */}
+          <div className="relative z-10 bg-white/90 border border-[#0A0A0A]/20 backdrop-blur-sm p-3 sm:p-3.5 transition-all duration-200">
+            <AnimatePresence mode="wait">
+              {activeMod ? (
+                <motion.div
+                  key={activeMod.id}
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.15 }}
+                  className="space-y-1.5"
+                >
+                  <div className="flex justify-between items-center text-[10px] font-mono">
+                    <span className="text-[#DE3D1C] font-bold uppercase tracking-wider">
+                      ACTIVE // [{activeMod.num}] {activeMod.name}
+                    </span>
+                    <span className="text-[#0A0A0A]/50 uppercase">ENGAGED</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 pt-0.5">
+                    {activeMod.subStages.map((stage, idx) => (
+                      <span
+                        key={idx}
+                        className="text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 bg-[#0A0A0A] text-white"
+                      >
+                        {stage}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="idle"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[10px] font-mono text-[#0A0A0A]/70"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#DE3D1C] animate-ping" />
+                    <span className="uppercase tracking-widest text-[#0A0A0A] font-bold">
+                      BUILDING SYSTEMS FOR SCALE
+                    </span>
+                  </div>
+                  <span className="uppercase tracking-widest text-[9px] text-[#0A0A0A]/50">
+                    HOVER NODES TO INSPECT ARCHITECTURE
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Bottom Edge Coordinates & Specification Bar */}
+          <div className="relative z-10 flex justify-between items-center text-[9px] font-mono text-[#0A0A0A]/50 uppercase tracking-widest pt-2.5 mt-1 border-t border-[#0A0A0A]/10">
+            <span>MODULES // 04 CONNECTED</span>
+            <span>21.1702° N, 72.8311° E</span>
           </div>
         </div>
       </div>
 
-      {/* Bottom WHAT WE DO Quick Bar (Integrated 4-Column Strip) */}
+      {/* Bottom WHAT WE DO Quick Bar (Integrated 4-Column Strip - PRESERVED) */}
       <div className="w-full bg-[#0A0A0A] text-[#F3F0E9] px-6 md:px-10 py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 items-center">
         {/* Label column */}
         <div className="lg:col-span-1 border-b sm:border-b-0 sm:border-r border-white/15 pb-3 sm:pb-0 sm:pr-4">

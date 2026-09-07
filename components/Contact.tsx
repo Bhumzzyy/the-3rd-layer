@@ -1,7 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { MoveRight, CheckCircle2 } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MoveRight, CheckCircle2, ChevronDown } from 'lucide-react';
+
+const serviceOptions = [
+  { value: 'Website Development', label: 'Website Architecture & Next.js' },
+  { value: 'E-Commerce Solutions', label: 'Shopify Plus / E-Commerce Store' },
+  { value: 'Mobile App Development', label: 'Mobile Application (iOS / Android)' },
+  { value: 'Digital Marketing & SEO', label: 'SEO & Growth Marketing' },
+  { value: 'Full Retainer / Custom Project', label: 'Full Retainer / Custom Project' },
+];
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,6 +20,18 @@ export default function Contact() {
     details: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -133,22 +154,72 @@ export default function Contact() {
                 />
               </div>
 
-              {/* SERVICE SELECTION */}
-              <div className="space-y-2">
+              {/* SERVICE SELECTION - Custom Brutalist Dropdown */}
+              <div className="space-y-2 relative" ref={dropdownRef}>
                 <label className="block text-xs font-mono uppercase tracking-widest text-[#0A0A0A] font-bold">
                   PRIMARY SERVICE REQUIRED
                 </label>
-                <select
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full bg-white border-2 border-[#0A0A0A] px-4 py-3.5 text-[#0A0A0A] font-sans text-sm outline-none focus:border-[#DE3D1C] transition-colors rounded-none"
-                >
-                  <option value="Website Development">Website Architecture & Next.js</option>
-                  <option value="E-Commerce Solutions">Shopify Plus / E-Commerce Store</option>
-                  <option value="Mobile App Development">Mobile Application (iOS / Android)</option>
-                  <option value="Digital Marketing & SEO">SEO & Growth Marketing</option>
-                  <option value="Full Retainer / Custom Project">Full Retainer / Custom Project</option>
-                </select>
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className={`w-full bg-white border-2 px-4 py-3.5 flex items-center justify-between text-[#0A0A0A] font-sans text-sm outline-none transition-all duration-200 text-left cursor-pointer ${
+                      dropdownOpen ? 'border-[#DE3D1C] ring-1 ring-[#DE3D1C]' : 'border-[#0A0A0A] hover:border-[#DE3D1C]'
+                    }`}
+                    aria-haspopup="listbox"
+                    aria-expanded={dropdownOpen}
+                  >
+                    <span className="font-medium text-[#0A0A0A]">
+                      {serviceOptions.find((opt) => opt.value === formData.service)?.label || formData.service}
+                    </span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-[#0A0A0A] transition-transform duration-200 ${
+                        dropdownOpen ? 'rotate-180 text-[#DE3D1C]' : ''
+                      }`}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {dropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute left-0 right-0 top-full mt-1.5 bg-[#0A0A0A] border-2 border-[#0A0A0A] text-[#F3F0E9] shadow-[6px_6px_0px_0px_rgba(222,61,28,1)] z-40 overflow-hidden divide-y divide-white/10"
+                        role="listbox"
+                      >
+                        {serviceOptions.map((opt) => {
+                          const isSelected = formData.service === opt.value;
+                          return (
+                            <button
+                              key={opt.value}
+                              type="button"
+                              onClick={() => {
+                                setFormData({ ...formData, service: opt.value });
+                                setDropdownOpen(false);
+                              }}
+                              className={`w-full px-4 py-3.5 text-xs font-mono tracking-wider uppercase text-left flex items-center justify-between transition-colors cursor-pointer ${
+                                isSelected
+                                  ? 'bg-[#DE3D1C] text-white font-bold'
+                                  : 'hover:bg-white/10 text-white/90'
+                              }`}
+                              role="option"
+                              aria-selected={isSelected}
+                            >
+                              <span>{opt.label}</span>
+                              {isSelected ? (
+                                <span className="w-2 h-2 rounded-full bg-white" />
+                              ) : (
+                                <span className="text-[10px] text-white/40">SELECT</span>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
 
               {/* PROJECT DETAILS */}
