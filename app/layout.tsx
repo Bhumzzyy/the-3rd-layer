@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Space_Grotesk, JetBrains_Mono, Inter } from "next/font/google";
+import Cursor from "@/components/Cursor";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -60,6 +61,7 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-[#F3F0E9] text-[#0A0A0A] selection:bg-[#DE3D1C] selection:text-white">
+        <Cursor />
         {children}
       </body>
     </html>

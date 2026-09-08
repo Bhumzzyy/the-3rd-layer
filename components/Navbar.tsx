@@ -48,81 +48,27 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            <nav className="flex items-center space-x-8 text-xs font-mono tracking-widest text-[#0A0A0A]/80 font-bold uppercase">
-              {navLinks.slice(0, 4).map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="hover:text-[#DE3D1C] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#DE3D1C] hover:after:w-full after:transition-all"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
-
-            <Link
-              href="/contact"
-              className="border border-[#0A0A0A] bg-[#0A0A0A] text-[#F3F0E9] hover:bg-[#DE3D1C] hover:border-[#DE3D1C] hover:text-white px-4 py-2 text-xs font-mono uppercase font-bold tracking-widest transition-all duration-200"
-            >
-              CONTACT
-            </Link>
-
-            {/* Menu Drawer Toggle Button */}
+          {/* Unified Hamburger Menu Button (Desktop & Mobile) */}
+          <div className="flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`w-9 h-9 border transition-all duration-200 flex items-center justify-center relative group ${mobileMenuOpen
-                ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white'
-                : 'border-[#0A0A0A]/30 hover:border-[#0A0A0A] bg-[#F3F0E9] hover:bg-[#0A0A0A] text-[#0A0A0A] hover:text-white'
+              className={`h-9 sm:h-10 px-3.5 sm:px-4 border transition-all duration-200 flex items-center gap-2.5 sm:gap-3 group cursor-pointer ${mobileMenuOpen
+                  ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white'
+                  : 'border-[#0A0A0A] bg-[#0A0A0A] text-white hover:bg-[#DE3D1C] hover:border-[#DE3D1C]'
                 }`}
-              aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Navigation Menu'}
+              aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
               title={mobileMenuOpen ? 'Close' : 'Menu'}
             >
+              <span className="text-[11px] sm:text-xs font-mono font-bold tracking-widest uppercase select-none">
+                {mobileMenuOpen ? 'CLOSE' : 'MENU'}
+              </span>
               <div className="w-4 h-4 relative flex items-center justify-center pointer-events-none">
                 <span
-                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${mobileMenuOpen
-                    ? 'rotate-45 translate-y-0'
-                    : '-translate-y-1'
+                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1'
                     }`}
                 />
                 <span
-                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${mobileMenuOpen
-                    ? '-rotate-45 translate-y-0'
-                    : 'translate-y-1'
-                    }`}
-                />
-              </div>
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-3">
-            <Link
-              href="/contact"
-              className="bg-[#0A0A0A] text-[#F3F0E9] text-[10px] font-mono font-bold tracking-widest px-3 py-1.5 uppercase hover:bg-[#DE3D1C] transition-colors"
-            >
-              START
-            </Link>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`w-9 h-9 border transition-all duration-200 flex items-center justify-center relative ${mobileMenuOpen
-                ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white'
-                : 'border-[#0A0A0A] bg-[#0A0A0A] text-white'
-                }`}
-              aria-label={mobileMenuOpen ? 'Close Mobile Menu' : 'Open Mobile Menu'}
-            >
-              <div className="w-4 h-4 relative flex items-center justify-center pointer-events-none">
-                <span
-                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${mobileMenuOpen
-                    ? 'rotate-45 translate-y-0'
-                    : '-translate-y-1'
-                    }`}
-                />
-                <span
-                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${mobileMenuOpen
-                    ? '-rotate-45 translate-y-0'
-                    : 'translate-y-1'
+                  className={`absolute h-[1.5px] w-4 bg-current transform transition-all duration-300 ease-in-out ${mobileMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1'
                     }`}
                 />
               </div>

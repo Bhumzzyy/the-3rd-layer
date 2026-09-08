@@ -75,7 +75,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 md:py-36 px-6 md:px-12 bg-[#0A0A0A] text-[#F3F0E9] border-b border-[#0A0A0A] relative dark-grain overflow-hidden">
       {/* Background Graphic Watermark */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[22vw] font-display font-black text-white/[0.02] select-none pointer-events-none leading-none">
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[18vw] font-display tracking-[0.12em] text-white/[0.02] select-none pointer-events-none leading-none">
         CONNECT
       </div>
 

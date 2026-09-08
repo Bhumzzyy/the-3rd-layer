@@ -112,7 +112,7 @@ export default function Hero() {
               className="space-y-0"
             >
               <div className="flex items-start">
-                <h1 className="text-[15vw] sm:text-[11vw] lg:text-[8.8vw] font-display font-black leading-[0.84] tracking-tighter uppercase text-[#0A0A0A]">
+                <h1 className="text-[15vw] sm:text-[11vw] lg:text-[8.8vw] font-display leading-[0.84] tracking-[0.02em] uppercase text-[#0A0A0A]">
                   IDEAS
                 </h1>
                 {/* Burnt Orange Asterisk Graphic */}
@@ -121,11 +121,11 @@ export default function Hero() {
                 </span>
               </div>
 
-              <h1 className="text-[15vw] sm:text-[11vw] lg:text-[8.8vw] font-display font-black leading-[0.84] tracking-tighter uppercase text-[#0A0A0A]">
+              <h1 className="text-[15vw] sm:text-[11vw] lg:text-[8.8vw] font-display leading-[0.84] tracking-[0.02em] uppercase text-[#0A0A0A]">
                 CODE
               </h1>
 
-              <h1 className="text-[15vw] sm:text-[11vw] lg:text-[8.8vw] font-display font-black leading-[0.84] tracking-tighter uppercase text-[#0A0A0A]">
+              <h1 className="text-[15vw] sm:text-[11vw] lg:text-[8.8vw] font-display leading-[0.84] tracking-[0.02em] uppercase text-[#0A0A0A]">
                 IMPACT
               </h1>
             </motion.div>
@@ -445,11 +445,10 @@ export default function Hero() {
                 className="absolute top-2 left-1/2 -translate-x-1/2 cursor-pointer group z-20"
               >
                 <div
-                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${
-                    hoveredModule === 'strategy'
+                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${hoveredModule === 'strategy'
                       ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white scale-105'
                       : 'border-[#0A0A0A] bg-white text-[#0A0A0A] hover:border-[#DE3D1C]'
-                  }`}
+                    }`}
                 >
                   <span className={`font-bold ${hoveredModule === 'strategy' ? 'text-white' : 'text-[#DE3D1C]'}`}>
                     [01]
@@ -465,11 +464,10 @@ export default function Hero() {
                 className="absolute left-0 top-1/2 -translate-y-1/2 cursor-pointer group z-20"
               >
                 <div
-                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${
-                    hoveredModule === 'design'
+                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${hoveredModule === 'design'
                       ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white scale-105'
                       : 'border-[#0A0A0A] bg-white text-[#0A0A0A] hover:border-[#DE3D1C]'
-                  }`}
+                    }`}
                 >
                   <span className={`font-bold ${hoveredModule === 'design' ? 'text-white' : 'text-[#DE3D1C]'}`}>
                     [02]
@@ -485,11 +483,10 @@ export default function Hero() {
                 className="absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer group z-20"
               >
                 <div
-                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${
-                    hoveredModule === 'development'
+                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${hoveredModule === 'development'
                       ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white scale-105'
                       : 'border-[#0A0A0A] bg-white text-[#0A0A0A] hover:border-[#DE3D1C]'
-                  }`}
+                    }`}
                 >
                   <span className={`font-bold ${hoveredModule === 'development' ? 'text-white' : 'text-[#DE3D1C]'}`}>
                     [03]
@@ -505,11 +502,10 @@ export default function Hero() {
                 className="absolute bottom-2 left-1/2 -translate-x-1/2 cursor-pointer group z-20"
               >
                 <div
-                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${
-                    hoveredModule === 'launch'
+                  className={`flex items-center gap-2 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all duration-200 shadow-sm ${hoveredModule === 'launch'
                       ? 'border-[#DE3D1C] bg-[#DE3D1C] text-white scale-105'
                       : 'border-[#0A0A0A] bg-white text-[#0A0A0A] hover:border-[#DE3D1C]'
-                  }`}
+                    }`}
                 >
                   <span className={`font-bold ${hoveredModule === 'launch' ? 'text-white' : 'text-[#DE3D1C]'}`}>
                     [04]

@@ -1,62 +1,160 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export default function Cursor() {
-  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+
+  const mousePos = useRef({ x: -100, y: -100 });
+  const ringPos = useRef({ x: -100, y: -100 });
+  const rafId = useRef<number | null>(null);
+
   const [isHovering, setIsHovering] = useState(false);
+  const [isMouseDown, setIsMouseDown] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isFinePointer, setIsFinePointer] = useState(false);
 
   useEffect(() => {
-    const updateCursor = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
+    // Only run on devices with a fine pointer (mouse / precision trackpad)
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setIsFinePointer(mediaQuery.matches);
+
+    if (!mediaQuery.matches) return;
+
+    // Add cursor-hiding classes to root document
+    document.documentElement.classList.add('custom-cursor-active');
+    document.body.classList.add('custom-cursor-active');
+
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setIsFinePointer(e.matches);
+      if (e.matches) {
+        document.documentElement.classList.add('custom-cursor-active');
+        document.body.classList.add('custom-cursor-active');
+      } else {
+        document.documentElement.classList.remove('custom-cursor-active');
+        document.body.classList.remove('custom-cursor-active');
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleMediaChange);
+
+    let hasInitialized = false;
+
+    const onMouseMove = (e: MouseEvent) => {
+      mousePos.current = { x: e.clientX, y: e.clientY };
+
+      if (!hasInitialized) {
+        hasInitialized = true;
+        ringPos.current = { x: e.clientX, y: e.clientY };
+        setIsVisible(true);
+      } else if (!isVisible) {
+        setIsVisible(true);
+      }
+
+      // Zero-latency instant position update for the central dot
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      }
 
       const target = e.target as HTMLElement | null;
       if (target) {
-        const isClickable = target.closest('a, button, input, textarea, select, [role="button"], .cursor-pointer');
+        const isClickable = target.closest(
+          'a, button, input, textarea, select, [role="button"], [role="link"], [role="tab"], .cursor-pointer, label, summary, [data-cursor-hover]'
+        );
         setIsHovering(!!isClickable);
       }
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const onMouseDown = () => setIsMouseDown(true);
+    const onMouseUp = () => setIsMouseDown(false);
+    const onMouseLeave = () => setIsVisible(false);
+    const onMouseEnter = () => setIsVisible(true);
 
-    window.addEventListener('mousemove', updateCursor);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('mouseleave', onMouseLeave);
+    document.addEventListener('mouseenter', onMouseEnter);
+
+    // Smooth physics follower loop for the outer ring
+    const render = () => {
+      const ease = 0.18;
+      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * ease;
+      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * ease;
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0) translate(-50%, -50%)`;
+      }
+
+      rafId.current = requestAnimationFrame(render);
+    };
+
+    rafId.current = requestAnimationFrame(render);
 
     return () => {
-      window.removeEventListener('mousemove', updateCursor);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
+      mediaQuery.removeEventListener('change', handleMediaChange);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mouseleave', onMouseLeave);
+      document.removeEventListener('mouseenter', onMouseEnter);
+
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
+
+      document.documentElement.classList.remove('custom-cursor-active');
+      document.body.classList.remove('custom-cursor-active');
     };
   }, [isVisible]);
 
-  if (!isVisible) return null;
+  if (!isFinePointer) return null;
+
+  // Dot dimensions
+  const dotSize = isMouseDown ? 5 : isHovering ? 10 : 7;
+
+  // Ring dimensions & styling
+  const ringSize = isMouseDown ? 28 : isHovering ? 54 : 36;
+  const ringBorder = isMouseDown
+    ? '2px solid #DE3D1C'
+    : isHovering
+    ? '2px solid #DE3D1C'
+    : '1.5px solid rgba(222, 61, 28, 0.75)';
+  const ringBg = isMouseDown
+    ? 'rgba(222, 61, 28, 0.22)'
+    : isHovering
+    ? 'rgba(222, 61, 28, 0.1)'
+    : 'transparent';
 
   return (
     <>
-      {/* Central Accent Dot */}
+      {/* Central High-Precision Orange Dot */}
       <div
-        className="negative-cursor hidden md:block"
+        ref={dotRef}
+        aria-hidden="true"
+        className="custom-cursor-dot"
         style={{
-          transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`,
-          width: isHovering ? '12px' : '8px',
-          height: isHovering ? '12px' : '8px',
-          backgroundColor: '#DE3D1C',
+          width: `${dotSize}px`,
+          height: `${dotSize}px`,
+          opacity: isVisible ? 1 : 0,
+          transition: 'width 0.15s ease, height 0.15s ease, opacity 0.2s ease',
         }}
       />
 
-      {/* Outer Follower Ring */}
+      {/* Fluid Outer Orange Follower Ring */}
       <div
-        className="negative-cursor-outer hidden md:block"
+        ref={ringRef}
+        aria-hidden="true"
+        className="custom-cursor-ring"
         style={{
-          transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`,
-          width: isHovering ? '56px' : '36px',
-          height: isHovering ? '56px' : '36px',
-          borderColor: isHovering ? '#DE3D1C' : 'rgba(10, 10, 10, 0.4)',
-          borderWidth: isHovering ? '2px' : '1px',
+          width: `${ringSize}px`,
+          height: `${ringSize}px`,
+          border: ringBorder,
+          backgroundColor: ringBg,
+          opacity: isVisible ? 1 : 0,
+          transition:
+            'width 0.22s cubic-bezier(0.16, 1, 0.3, 1), height 0.22s cubic-bezier(0.16, 1, 0.3, 1), border 0.2s ease, background-color 0.2s ease, opacity 0.2s ease',
         }}
       />
     </>

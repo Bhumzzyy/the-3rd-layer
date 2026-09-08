@@ -73,9 +73,8 @@ export default function Services() {
               >
                 {/* Left accent bar on hover */}
                 <div
-                  className={`absolute left-0 top-0 bottom-0 w-2 bg-[#DE3D1C] transition-transform duration-300 ${
-                    isHovered ? 'scale-y-100' : 'scale-y-0'
-                  }`}
+                  className={`absolute left-0 top-0 bottom-0 w-2 bg-[#DE3D1C] transition-transform duration-300 ${isHovered ? 'scale-y-100' : 'scale-y-0'
+                    }`}
                 />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">

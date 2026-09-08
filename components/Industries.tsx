@@ -53,6 +53,47 @@ const industries = [
   },
 ];
 
+const getCardBorderClasses = (idx: number) => {
+  let classes = 'border-[#0A0A0A] ';
+
+  // Mobile (1 col): bottom border on items 0-4, none on item 5
+  if (idx < 5) {
+    classes += 'border-b-2 ';
+  } else {
+    classes += 'border-b-0 ';
+  }
+
+  // Tablet (md: 2 cols):
+  // Bottom border on items 0-3, none on items 4-5
+  if (idx < 4) {
+    classes += 'md:border-b-2 ';
+  } else {
+    classes += 'md:border-b-0 ';
+  }
+  // Right border on col 0 (even idx: 0, 2, 4), none on col 1 (odd idx: 1, 3, 5)
+  if (idx % 2 === 0) {
+    classes += 'md:border-r-2 ';
+  } else {
+    classes += 'md:border-r-0 ';
+  }
+
+  // Desktop (lg: 3 cols):
+  // Bottom border on top row (items 0, 1, 2), none on bottom row (items 3, 4, 5)
+  if (idx < 3) {
+    classes += 'lg:border-b-2 ';
+  } else {
+    classes += 'lg:border-b-0 ';
+  }
+  // Right border on col 0 & 1 (idx % 3 !== 2), none on col 2 (idx 2, 5)
+  if (idx % 3 !== 2) {
+    classes += 'lg:border-r-2 ';
+  } else {
+    classes += 'lg:border-r-0 ';
+  }
+
+  return classes;
+};
+
 export default function Industries() {
   return (
     <section id="industries" className="py-20 md:py-28 px-6 md:px-12 bg-[#F3F0E9] text-[#0A0A0A] border-b border-[#0A0A0A] relative paper-grain">
@@ -67,8 +108,8 @@ export default function Industries() {
           </h2>
         </div>
 
-        {/* Compact Editorial 6-Grid with Hairline Borders */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-[#0A0A0A]">
+        {/* Compact Editorial 6-Grid with Only Thick Inner Separator Lines, No Outer Box Border */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {industries.map((ind, idx) => (
             <motion.div
               key={ind.code}
@@ -76,7 +117,7 @@ export default function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: idx * 0.06 }}
-              className="border-r border-b border-[#0A0A0A] p-7 sm:p-8 flex flex-col justify-between bg-[#F3F0E9] hover:bg-[#0A0A0A] hover:text-white transition-all duration-300 group"
+              className={`${getCardBorderClasses(idx)} p-7 sm:p-8 flex flex-col justify-between bg-[#F3F0E9] hover:bg-[#0A0A0A] hover:text-white transition-all duration-300 group`}
             >
               <div>
                 <div className="flex justify-between items-center mb-5">

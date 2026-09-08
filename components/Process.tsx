@@ -719,7 +719,7 @@ export default function Process() {
   const ActiveVisual = active.visualComponent;
 
   return (
-    <section id="process" className="py-24 md:py-32 px-6 md:px-12 bg-[#0A0A0A] text-[#F3F0E9] border-b border-[#0A0A0A] relative dark-grain">
+    <section id="process" className="pt-20 md:pt-28 pb-8 md:pb-12 px-6 md:px-12 bg-[#0A0A0A] text-[#F3F0E9] border-b border-[#0A0A0A] relative dark-grain">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Top Header */}
         <div className="flex flex-col md:flex-row justify-between md:items-end border-b border-white/20 pb-10">
